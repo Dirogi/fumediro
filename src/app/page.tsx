@@ -3,9 +3,9 @@ import { getCollections } from "@/lib/catalog";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-12 px-4 py-16 sm:px-8">
+    <main id="contenido" className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-12 px-4 py-16 sm:px-8">
       <header className="flex flex-col gap-3">
-        <h1 className="font-display text-[clamp(3rem,10vw,6rem)] font-semibold tracking-wide">FUMEDIRO</h1>
+        <h1 className="font-display text-[clamp(3rem,10vw,6rem)] font-light tracking-wide">FUMEDIRO</h1>
         <p className="text-lg text-muted">Beyond scent. Beyond form.</p>
       </header>
 
