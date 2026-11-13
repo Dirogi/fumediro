@@ -3,7 +3,7 @@ import { getCollections } from "@/lib/catalog";
 
 export default function Home() {
   return (
-    <main id="contenido" className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-12 px-4 py-16 sm:px-8">
+    <main id="contenido" className="mx-auto flex min-h-[70dvh] max-w-5xl flex-col gap-12 px-4 pb-16 pt-32 sm:px-8">
       <header className="flex flex-col gap-3">
         <h1 className="font-display text-[clamp(3rem,10vw,6rem)] font-light tracking-wide">FUMEDIRO</h1>
         <p className="text-lg text-muted">Beyond scent. Beyond form.</p>
@@ -22,10 +22,6 @@ export default function Home() {
           ))}
         </ul>
       </section>
-
-      <footer className="mt-auto text-sm text-muted">
-        Fumediro es una marca y un proyecto conceptual de portfolio; no es una tienda operativa.
-      </footer>
     </main>
   );
 }

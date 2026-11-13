@@ -15,7 +15,10 @@ export function NavLink({ route, className = "" }: NavLinkProps) {
 
   if (href === null) {
     return (
-      <span className={`cursor-default text-silver ${className}`}>
+      // Subrayado punteado fino: pista no cromática de "aún no es un enlace".
+      <span
+        className={`cursor-default text-silver underline decoration-silver/50 decoration-dotted decoration-1 underline-offset-[6px] ${className}`}
+      >
         {route.label}
         <span className="sr-only">, aún no disponible</span>
       </span>
@@ -25,7 +28,7 @@ export function NavLink({ route, className = "" }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`text-ivory underline-offset-8 hover:underline focus-visible:underline ${className}`}
+      className={`font-medium text-ivory underline-offset-8 hover:underline focus-visible:underline ${className}`}
     >
       {route.label}
     </Link>

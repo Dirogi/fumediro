@@ -17,6 +17,9 @@ export const routes = {
   contact: { label: "Contacto", href: "/contacto", ready: false },
 } satisfies Record<string, AppRoute>;
 
+export const primaryNav: AppRoute[] = [routes.collections, routes.perfumes, routes.quiz, routes.story];
+export const footerNav: AppRoute[] = [...primaryNav, routes.contact];
+
 /** Destino real de la ruta, o null si todavía no existe (el elemento debe quedar inactivo). */
 export const resolveHref = (route: AppRoute): string | null =>
   route.ready ? route.href : (route.fallback ?? null);
