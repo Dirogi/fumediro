@@ -1,26 +1,19 @@
-import { GlassPanel } from "@/components/GlassPanel";
+import { CollectionIndex } from "@/components/CollectionIndex";
 import { Hero } from "@/components/Hero";
-import { getCollections } from "@/lib/catalog";
 
 export default function Home() {
   return (
-    <main id="contenido">
+    // tabIndex -1: el skip link ("#contenido") deja el foco aquí, no en <body>.
+    <main id="contenido" tabIndex={-1}>
       <Hero />
 
-      {/* Provisional hasta D4: lista simple de colecciones; es el destino del CTA del hero. */}
-      <section aria-labelledby="colecciones" className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-24 sm:px-8">
-        <h2 id="colecciones" className="font-display text-3xl">Colecciones</h2>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {getCollections().map((c) => (
-            <li key={c.id}>
-              <GlassPanel className="h-full">
-                <h3 className="font-display text-2xl">{c.name}</h3>
-                <p className="mt-1 text-muted">{c.tagline}</p>
-              </GlassPanel>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-[clamp(3rem,6vw,5.5rem)] pt-[clamp(4.5rem,9vw,8rem)]">
+        <p className="mx-auto max-w-[20em] text-balance text-center font-display text-[clamp(1.875rem,4.6vw,4rem)] font-light leading-[1.12] text-ivory">
+          Fragancias concebidas como experiencias olfativas y objetos escultóricos.
+        </p>
+      </div>
+
+      <CollectionIndex />
     </main>
   );
 }

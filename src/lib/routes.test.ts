@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveHref, routes, type AppRoute } from "@/lib/routes";
+import { collectionPage, collectionRoute, resolveHref, routes, type AppRoute } from "@/lib/routes";
 
 describe("resolveHref", () => {
   it("devuelve href si la ruta está lista", () => {
@@ -16,6 +16,18 @@ describe("resolveHref", () => {
 
   it("ready tiene prioridad sobre el fallback", () => {
     expect(resolveHref({ label: "x", href: "/x", ready: true, fallback: "/#x" })).toBe("/x");
+  });
+});
+
+describe("collectionRoute", () => {
+  it("compone el href con el slug y hereda el estado de la página de colección", () => {
+    const r = collectionRoute("voltara", "VOLTARA");
+    expect(r.href).toBe("/colecciones/voltara");
+    expect(r.ready).toBe(collectionPage.ready);
+  });
+
+  it("hoy es inactiva: no genera enlaces a rutas inexistentes", () => {
+    expect(resolveHref(collectionRoute("cosmora", "COSMORA"))).toBeNull();
   });
 });
 

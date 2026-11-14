@@ -17,6 +17,15 @@ export const routes = {
   contact: { label: "Contacto", href: "/contacto", ready: false },
 } satisfies Record<string, AppRoute>;
 
+// Páginas /colecciones/[slug]: poner `ready: true` cuando exista la ruta dinámica.
+export const collectionPage = { href: "/colecciones", ready: false };
+
+export const collectionRoute = (slug: string, label: string): AppRoute => ({
+  label,
+  href: `${collectionPage.href}/${slug}`,
+  ready: collectionPage.ready,
+});
+
 export const primaryNav: AppRoute[] = [routes.collections, routes.perfumes, routes.quiz, routes.story];
 export const footerNav: AppRoute[] = [...primaryNav, routes.contact];
 

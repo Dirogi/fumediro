@@ -217,16 +217,39 @@ body:has(dialog[open]) {
 .hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgb(20 23 27 / 78%) 0%, rgb(20 23 27 / 54%) 42%, transparent 76%);
+  background:
+    /* fundido final a charcoal: el hero enlaza con la sección siguiente sin corte */
+    linear-gradient(0deg, var(--color-charcoal) 0%, transparent 14%),
+    linear-gradient(0deg, rgb(20 23 27 / 78%) 0%, rgb(20 23 27 / 54%) 42%, transparent 76%);
 }
 
 @media (min-aspect-ratio: 1/1) {
   .hero-scrim {
     background:
+      linear-gradient(0deg, var(--color-charcoal) 0%, transparent 14%),
       /* mancha local bajo el wordmark: el reflejo brillante de la imagen cae justo ahí */
       radial-gradient(60% 45% at 30% 60%, rgb(20 23 27 / 64%), transparent 100%),
       linear-gradient(90deg, rgb(20 23 27 / 70%) 0%, rgb(20 23 27 / 34%) 46%, transparent 74%),
       linear-gradient(0deg, rgb(20 23 27 / 55%) 0%, transparent 40%);
+  }
+}
+
+/* Firma de luz de cada colección (D4): decorativa, se desvanece hacia el texto (izquierda). */
+.light-sig {
+  --sig-x: 112px; /* distancia del centro de la firma al borde derecho */
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 60%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 60%);
+}
+
+@media (min-width: 768px) {
+  .light-sig {
+    --sig-x: 230px;
+    width: 62%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 45%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 45%);
   }
 }
 

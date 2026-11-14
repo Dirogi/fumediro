@@ -4,7 +4,7 @@ import { footerNav } from "@/lib/routes";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-12 sm:px-8">
+      <div className="mx-auto flex w-full max-w-[90rem] flex-col gap-8 px-[max(1rem,5vw)] py-12">
         <p className="font-display text-2xl font-medium tracking-[0.14em]">FUMEDIRO</p>
         <nav aria-label="Secundaria">
           <ul className="flex flex-wrap gap-x-8 text-sm">
