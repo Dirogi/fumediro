@@ -1,4 +1,6 @@
+import { ClosingCta } from "@/components/ClosingCta";
 import { CollectionIndex } from "@/components/CollectionIndex";
+import { DiroCore } from "@/components/DiroCore";
 import { Hero } from "@/components/Hero";
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
       </div>
 
       <CollectionIndex />
+      <DiroCore />
+      <ClosingCta />
     </main>
   );
 }

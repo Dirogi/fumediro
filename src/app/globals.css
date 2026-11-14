@@ -234,6 +234,11 @@ body:has(dialog[open]) {
   }
 }
 
+/* DiroCore (D5): una sola luz cálida tras el panel de cristal. */
+.diro-glow {
+  background: radial-gradient(55% 70% at 78% 45%, rgb(199 173 131 / 16%), transparent 72%);
+}
+
 /* Firma de luz de cada colección (D4): decorativa, se desvanece hacia el texto (izquierda). */
 .light-sig {
   --sig-x: 112px; /* distancia del centro de la firma al borde derecho */
