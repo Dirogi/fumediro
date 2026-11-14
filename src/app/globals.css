@@ -143,6 +143,93 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
+/* ---- Hero (D3, estático) ---- */
+/* Variables por breakpoint: tamaño del wordmark, aire inferior y separación con la placa. */
+.hero {
+  --wm: clamp(2.75rem, 15vw, 12rem);
+  --wm-gap: clamp(1rem, 2.6svh, 1.75rem);
+  --hero-justify: flex-end;
+  --hero-pt: 7rem;
+  --hero-pb: clamp(3rem, 25svh, 16rem);
+}
+
+/* Retrato (imagen vertical): se ancla por arriba, justo bajo la cola brillante de la cinta de
+   cristal (~50 % de la altura); más arriba el wordmark se cruzaría con ese reflejo. */
+@media not all and (min-aspect-ratio: 1/1) {
+  .hero {
+    --hero-justify: flex-start;
+    --hero-pt: max(7rem, 54svh);
+    --hero-pb: 2rem;
+  }
+}
+
+/* Imagen horizontal: el wordmark se queda en su zona oscura (izquierda). */
+@media (min-aspect-ratio: 1/1) {
+  .hero {
+    --wm: clamp(5rem, 8.8vw, 9.5rem);
+  }
+}
+
+/* Pantallas bajas (móvil apaisado): compactar para que todo quepa sin scroll. */
+@media (max-height: 480px) {
+  .hero {
+    --hero-pt: 5rem;
+    --hero-pb: 1rem;
+    --wm-gap: 0.5rem;
+  }
+}
+
+.hero-wordmark {
+  font-size: var(--wm);
+  margin-bottom: var(--wm-gap);
+}
+
+/* Placa de cristal: opaca por defecto; translúcida con difuminado si hay soporte y se permite. */
+.glass-band {
+  background: rgb(20 23 27 / 90%);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  box-shadow: inset 0 1px 0 rgb(242 238 230 / 14%);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  @media not (prefers-reduced-transparency: reduce) {
+    .glass-band {
+      background: linear-gradient(135deg, rgb(242 238 230 / 7%), rgb(20 23 27 / 30%) 55%, rgb(20 23 27 / 44%));
+      border-color: rgb(242 238 230 / 22%);
+      box-shadow:
+        inset 0 1px 0 rgb(242 238 230 / 30%),
+        0 24px 64px rgb(0 0 0 / 35%);
+      -webkit-backdrop-filter: blur(16px) saturate(1.15);
+      backdrop-filter: blur(16px) saturate(1.15);
+    }
+  }
+}
+
+/* Respaldo si la imagen no carga: una sola luz cálida (queda tapada por la imagen). */
+.hero-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 60% at 88% -5%, rgb(199 173 131 / 30%), transparent 62%);
+}
+
+/* Scrim de charcoal para garantizar contraste del texto sobre la imagen. */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(20 23 27 / 78%) 0%, rgb(20 23 27 / 54%) 42%, transparent 76%);
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .hero-scrim {
+    background:
+      /* mancha local bajo el wordmark: el reflejo brillante de la imagen cae justo ahí */
+      radial-gradient(60% 45% at 30% 60%, rgb(20 23 27 / 64%), transparent 100%),
+      linear-gradient(90deg, rgb(20 23 27 / 70%) 0%, rgb(20 23 27 / 34%) 46%, transparent 74%),
+      linear-gradient(0deg, rgb(20 23 27 / 55%) 0%, transparent 40%);
+  }
+}
+
 /* Superficie opaca por defecto; el desenfoque solo si hay soporte y transparencia permitida. */
 .glass-panel {
   background: var(--surface);

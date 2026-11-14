@@ -1,15 +1,14 @@
 import { GlassPanel } from "@/components/GlassPanel";
+import { Hero } from "@/components/Hero";
 import { getCollections } from "@/lib/catalog";
 
 export default function Home() {
   return (
-    <main id="contenido" className="mx-auto flex min-h-[70dvh] max-w-5xl flex-col gap-12 px-4 pb-16 pt-32 sm:px-8">
-      <header className="flex flex-col gap-3">
-        <h1 className="font-display text-[clamp(3rem,10vw,6rem)] font-light tracking-wide">FUMEDIRO</h1>
-        <p className="text-lg text-muted">Beyond scent. Beyond form.</p>
-      </header>
+    <main id="contenido">
+      <Hero />
 
-      <section aria-labelledby="colecciones" className="flex flex-col gap-6">
+      {/* Provisional hasta D4: lista simple de colecciones; es el destino del CTA del hero. */}
+      <section aria-labelledby="colecciones" className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-24 sm:px-8">
         <h2 id="colecciones" className="font-display text-3xl">Colecciones</h2>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {getCollections().map((c) => (

@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from "react";
 type Variant = "primary" | "secondary";
 
 const base =
-  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-6 text-sm font-medium " +
+  "inline-flex min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-full px-6 text-sm font-medium " +
   "transition-[transform,background-color] duration-150 ease-out active:scale-[0.97]";
 
 const variants: Record<Variant, string> = {
