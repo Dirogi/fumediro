@@ -4,6 +4,7 @@ import { GlassNav } from "@/components/GlassNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SkipLink } from "@/components/SkipLink";
 import "./globals.css";
+import "./motion.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],

@@ -28,7 +28,7 @@ export function NavLink({ route, className = "" }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`font-medium text-ivory underline-offset-8 hover:underline focus-visible:underline ${className}`}
+      className={`font-medium text-ivory underline decoration-transparent decoration-1 underline-offset-8 transition-[text-decoration-color] duration-150 ease-out hover:decoration-current focus-visible:decoration-current motion-reduce:transition-none ${className}`}
     >
       {route.label}
     </Link>

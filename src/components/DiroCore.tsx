@@ -16,7 +16,7 @@ export function DiroCore() {
       <div aria-hidden="true" className="diro-glow pointer-events-none absolute inset-0 -z-10" />
 
       <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
-        <div className="lg:col-span-5">
+        <div className="reveal lg:col-span-5">
           <h2
             id="dirocore"
             className="font-display text-[clamp(3rem,7vw,6.5rem)] font-light leading-none tracking-[0.02em] text-ivory"
@@ -32,13 +32,14 @@ export function DiroCore() {
           </p>
         </div>
 
-        <div className="glass-band p-6 md:p-10 lg:col-span-7 xl:col-span-6 xl:col-start-7">
+        <div className="diro-panel glass-band p-6 md:p-10 lg:col-span-7 xl:col-span-6 xl:col-start-7">
           <h3 className="sr-only">Tecnologías de DiroCore™</h3>
           <dl>
             {technologies.map((t, i) => (
               <div
                 key={t.name}
-                className={`grid gap-1 py-5 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8 ${
+                style={{ "--i": i } as React.CSSProperties}
+                className={`diro-row grid gap-1 py-5 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8 ${
                   i === 0 ? "pt-0" : "border-t border-border"
                 }`}
               >

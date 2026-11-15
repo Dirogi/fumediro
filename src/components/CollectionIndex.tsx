@@ -14,9 +14,10 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
       <div
         aria-hidden="true"
         className="light-sig"
+        data-sig={collection.id}
         style={{ backgroundImage: collectionLight[collection.id] }}
       />
-      <div className="relative grid gap-x-8 gap-y-4 py-9 md:grid-cols-[5rem_minmax(0,1fr)_auto] md:items-end md:py-14 md:pr-[clamp(1.5rem,3vw,3rem)]">
+      <div className="reveal relative grid gap-x-8 gap-y-4 py-9 md:grid-cols-[5rem_minmax(0,1fr)_auto] md:items-end md:py-14 md:pr-[clamp(1.5rem,3vw,3rem)]">
         <span aria-hidden="true" className="font-display text-2xl font-light text-silver md:pb-3">
           {toRoman(index + 1)}
         </span>
@@ -45,7 +46,8 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
     </>
   );
 
-  const cls = "relative isolate block overflow-hidden border-b border-border";
+  // overflow-clip (no -hidden): recorta la firma sin crear un contenedor de scroll.
+  const cls = "relative isolate block overflow-clip border-b border-border";
   return (
     <li>
       {href ? (
@@ -65,7 +67,8 @@ export function CollectionIndex() {
       aria-labelledby="colecciones"
       className="mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-[clamp(5rem,10vw,10rem)] pt-[clamp(3rem,6vw,5.5rem)]"
     >
-      <h2 id="colecciones" className="font-display text-[clamp(2rem,4vw,3.25rem)] font-light text-ivory">
+      {/* Destino del ancla #colecciones: revelado solo de opacidad; un transform movería la posición real del destino. */}
+      <h2 id="colecciones" className="reveal-fade font-display text-[clamp(2rem,4vw,3.25rem)] font-light text-ivory">
         Cinco universos
       </h2>
       <ol className="mt-10 border-t border-border md:mt-14">
