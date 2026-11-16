@@ -273,3 +273,12 @@ body:has(dialog[open]) {
     }
   }
 }
+
+/* Impresión: RevealOnView nunca deja contenido atenuado en papel. */
+@media print {
+  .rv-out {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
