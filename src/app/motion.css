@@ -1,0 +1,96 @@
+/*
+  D6 · Movimiento. Solo transform y opacity (nada de blur, backdrop-filter, width ni height), sin bucles.
+  Todo bajo prefers-reduced-motion: no-preference; con movimiento reducido o sin JS todo queda visible.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from {
+      transform: translateY(18px);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* Entrada única del wordmark. Sin opacidad inicial 0: el texto se pinta desde el primer fotograma (LCP).
+     La placa de cristal del hero no se anima: lleva backdrop-filter y moverla obligaría a recalcular el desenfoque. */
+  .hero-wordmark {
+    animation: hero-rise 900ms var(--ease-out) both;
+  }
+
+  /* Revelados bidireccionales (RevealOnView): .rv-out es el estado atenuado y solo lo lleva lo que está
+     fuera del viewport. Entrar = transición al estado normal (duración fija); salir = retorno más breve. */
+  .reveal,
+  .reveal-fade,
+  .light-sig,
+  .diro-panel,
+  .diro-row {
+    transition:
+      opacity var(--rv-d, 780ms) var(--ease-out),
+      transform var(--rv-d, 780ms) var(--ease-out);
+  }
+
+  .reveal-fade {
+    --rv-d: 680ms;
+  }
+
+  .light-sig {
+    --rv-d: 1000ms;
+  }
+
+  .diro-panel {
+    --rv-d: 800ms;
+  }
+
+  .diro-row {
+    --rv-d: 550ms;
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .rv-out {
+    transition-duration: 400ms;
+    transition-delay: 0ms;
+    opacity: 0;
+  }
+
+  .reveal.rv-out {
+    transform: translateY(24px);
+  }
+
+  .diro-row.rv-out {
+    transform: translateY(24px);
+  }
+
+  /* Firmas de las colecciones: cada una responde a su manera. */
+  .light-sig[data-sig="voltara"] {
+    transform-origin: 82% 50%;
+  }
+
+  .light-sig[data-sig="voltara"].rv-out {
+    transform: scale(0.9);
+  }
+
+  .light-sig[data-sig="flora-arcana"] {
+    transform-origin: calc(100% - var(--sig-x)) 50%;
+  }
+
+  .light-sig[data-sig="flora-arcana"].rv-out {
+    transform: rotate(-12deg) scale(0.94);
+  }
+
+  .light-sig[data-sig="cosmora"].rv-out {
+    transform: translateX(22px);
+  }
+
+  .light-sig[data-sig="prismatica"].rv-out {
+    transform: translateX(-30px);
+  }
+
+  .light-sig[data-sig="thermae"] {
+    transform-origin: right center;
+  }
+
+  .light-sig[data-sig="thermae"].rv-out {
+    transform: scaleX(0.7);
+  }
+}
