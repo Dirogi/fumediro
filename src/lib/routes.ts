@@ -20,6 +20,15 @@ export const routes = {
 // Páginas /colecciones/[slug]: poner `ready: true` cuando exista la ruta dinámica.
 export const collectionPage = { href: "/colecciones", ready: false };
 
+// Fichas /perfumes/[slug]: poner `ready: true` cuando la plantilla de ficha esté aprobada (D5).
+export const perfumePage = { href: "/perfumes", ready: false };
+
+export const perfumeRoute = (slug: string, label: string): AppRoute => ({
+  label,
+  href: `${perfumePage.href}/${slug}`,
+  ready: perfumePage.ready,
+});
+
 export const collectionRoute = (slug: string, label: string): AppRoute => ({
   label,
   href: `${collectionPage.href}/${slug}`,

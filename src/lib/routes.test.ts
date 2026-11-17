@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { collectionPage, collectionRoute, resolveHref, routes, type AppRoute } from "@/lib/routes";
+import { collectionPage, collectionRoute, perfumePage, perfumeRoute, resolveHref, routes, type AppRoute } from "@/lib/routes";
+
+describe("perfumeRoute", () => {
+  it("compone el href y hoy es inactiva: no enlaza a fichas inexistentes", () => {
+    const r = perfumeRoute("ion", "ION");
+    expect(r.href).toBe("/perfumes/ion");
+    expect(r.ready).toBe(perfumePage.ready);
+    expect(resolveHref(r)).toBeNull();
+  });
+});
 
 describe("resolveHref", () => {
   it("devuelve href si la ruta está lista", () => {
