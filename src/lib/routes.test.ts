@@ -50,11 +50,11 @@ describe("registro de rutas", () => {
     }
   });
 
-  it("hoy solo Inicio y Colecciones (ancla) son enlaces; el resto está inactivo", () => {
+  it("hoy solo Inicio, Colecciones (ancla) y Perfumes son enlaces; el resto está inactivo", () => {
     const active = Object.entries(routes)
       .filter(([, r]) => resolveHref(r) !== null)
       .map(([key]) => key);
-    expect(active).toEqual(["home", "collections"]);
+    expect(active).toEqual(["home", "collections", "perfumes"]);
     expect(resolveHref(routes.collections)).toBe("/#colecciones");
   });
 });

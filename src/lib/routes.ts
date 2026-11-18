@@ -11,7 +11,7 @@ export interface AppRoute {
 export const routes = {
   home: { label: "Inicio", href: "/", ready: true },
   collections: { label: "Colecciones", href: "/colecciones", ready: false, fallback: "/#colecciones" },
-  perfumes: { label: "Perfumes", href: "/perfumes", ready: false },
+  perfumes: { label: "Perfumes", href: "/perfumes", ready: true },
   quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: false },
   story: { label: "Nuestra historia", href: "/historia", ready: false },
   contact: { label: "Contacto", href: "/contacto", ready: false },

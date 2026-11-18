@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { PerfumeGrid } from "@/components/PerfumeGrid";
-import { getPerfumes } from "@/lib/catalog";
-import { routes } from "@/lib/routes";
+import { CatalogExplorer } from "@/components/CatalogExplorer";
 
-// D3 construye el catálogo real. Hasta que `routes.perfumes.ready` sea true esta ruta responde 404.
 export function generateMetadata(): Metadata {
-  if (!routes.perfumes.ready) notFound();
   return { title: "Perfumes · Fumediro", description: "Los quince perfumes de Fumediro, proyecto conceptual de portfolio." };
 }
 
-export default function PerfumesPage() {
-  if (!routes.perfumes.ready) notFound();
+// Leer `searchParams` hace la ruta dinámica: el HTML inicial ya llega filtrado y `useSearchParams` coincide (sin parpadeo ni Suspense).
+export default async function PerfumesPage({ searchParams }: { searchParams: Promise<unknown> }) {
+  await searchParams;
   return (
-    <main id="contenido" tabIndex={-1} className="mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-24 pt-28">
+    <main id="contenido" tabIndex={-1} className="mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-[clamp(5rem,10vw,10rem)] pt-28">
       <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Perfumes" }]} />
-      <h1 className="mb-10 mt-6 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-light text-ivory">Perfumes</h1>
-      <PerfumeGrid perfumes={getPerfumes()} preloadCount={3} />
+      <header className="mb-10 mt-8 grid gap-6 md:mb-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] lg:items-end lg:gap-16">
+        <h1 className="font-display text-[clamp(3rem,9vw,6.5rem)] font-light leading-[0.95] tracking-[0.02em] text-ivory">Perfumes</h1>
+        <p className="text-base leading-relaxed text-silver md:text-lg lg:pb-2">
+          Quince fragancias, cinco universos. Recórrelas todas o entra por la colección que más te atraiga.
+        </p>
+      </header>
+      <div className="border-t border-border pt-8 md:pt-10">
+        <CatalogExplorer />
+      </div>
     </main>
   );
 }
