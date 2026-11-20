@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { collections } from "@/data/collections";
+import { perfumes } from "@/data/perfumes";
 import { collectionPage, collectionRoute, perfumePage, perfumeRoute, resolveHref, routes, type AppRoute } from "@/lib/routes";
 
 describe("perfumeRoute", () => {
@@ -35,8 +37,17 @@ describe("collectionRoute", () => {
     expect(r.ready).toBe(collectionPage.ready);
   });
 
-  it("hoy es inactiva: no genera enlaces a rutas inexistentes", () => {
-    expect(resolveHref(collectionRoute("cosmora", "COSMORA"))).toBeNull();
+  it("D4-D: las cinco colecciones están activas y enlazan a su página", () => {
+    expect(collectionPage.ready).toBe(true);
+    expect(collections).toHaveLength(5);
+    for (const c of collections) expect(resolveHref(collectionRoute(c.slug, c.name))).toBe(`/colecciones/${c.slug}`);
+  });
+
+  it("las fichas de perfume siguen inactivas hasta D5: ningún perfume enlaza a una ruta que da 404", () => {
+    expect(perfumePage.ready).toBe(false);
+    for (const p of perfumes) expect(resolveHref(perfumeRoute(p.slug, p.name))).toBeNull();
+    // Ids y slugs de CORALLIS coinciden y la grafía antigua no genera ruta.
+    expect(perfumeRoute("corallis", "CORALLIS").href).toBe("/perfumes/corallis");
   });
 });
 
@@ -50,11 +61,11 @@ describe("registro de rutas", () => {
     }
   });
 
-  it("hoy solo Inicio, Colecciones (ancla) y Perfumes son enlaces; el resto está inactivo", () => {
+  it("hoy solo Inicio, Colecciones y Perfumes son enlaces; el resto está inactivo", () => {
     const active = Object.entries(routes)
       .filter(([, r]) => resolveHref(r) !== null)
       .map(([key]) => key);
     expect(active).toEqual(["home", "collections", "perfumes"]);
-    expect(resolveHref(routes.collections)).toBe("/#colecciones");
+    expect(resolveHref(routes.collections)).toBe("/colecciones");
   });
 });

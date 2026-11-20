@@ -5,7 +5,12 @@ import { toRoman } from "@/lib/roman";
 import { collectionRoute, resolveHref } from "@/lib/routes";
 import type { Collection } from "@/lib/types";
 
-function CollectionRow({ collection, index }: { collection: Collection; index: number }) {
+type Variant = "home" | "page";
+
+function CollectionRow({ collection, index, variant }: { collection: Collection; index: number; variant: Variant }) {
+  const page = variant === "page";
+  // En la página el h1 es externo: cada colección es h2 (en la Home, bajo el h2 de sección, es h3).
+  const Heading = page ? "h2" : "h3";
   const href = resolveHref(collectionRoute(collection.slug, collection.name));
   const perfumes = getPerfumesByCollection(collection.id);
 
@@ -17,21 +22,32 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
         data-sig={collection.id}
         style={{ backgroundImage: collectionLight[collection.id] }}
       />
-      <div className="reveal relative grid gap-x-8 gap-y-4 py-9 md:grid-cols-[5rem_minmax(0,1fr)_auto] md:items-end md:py-14 md:pr-[clamp(1.5rem,3vw,3rem)]">
+      <div className={`reveal relative grid gap-x-8 gap-y-4 md:grid-cols-[5rem_minmax(0,1fr)_auto] md:items-end md:pr-[clamp(2.5rem,3vw,3rem)] ${
+          page ? "py-12 md:py-[clamp(4.5rem,8vw,7rem)]" : "py-9 md:py-14"
+        }`}
+      >
         <span aria-hidden="true" className="font-display text-2xl font-light text-silver md:pb-3">
           {toRoman(index + 1)}
         </span>
         <div>
-          <h3 className="font-display text-[clamp(2rem,9vw,3.25rem)] font-medium md:text-[clamp(3.25rem,6vw,5.5rem)] leading-[0.95] tracking-[0.04em] text-ivory">
+          <Heading
+            className={`font-display font-medium leading-[0.95] tracking-[0.04em] text-ivory ${
+              page
+                ? "text-[clamp(2.25rem,10vw,3.5rem)] md:text-[clamp(3rem,5.5vw,5rem)]"
+                : "text-[clamp(2rem,9vw,3.25rem)] md:text-[clamp(3.25rem,6vw,5.5rem)]"
+            }`}
+          >
             {collection.name}
             {/* Sin ruta de colección todavía: el bloque es informativo, no un enlace. */}
             {!href && <span className="sr-only">, página de colección aún no disponible</span>}
-          </h3>
-          <p className="mt-3 text-base text-silver">{collection.tagline}</p>
+          </Heading>
+          <p className={page ? "mt-4 font-display text-[clamp(1.25rem,2.4vw,1.75rem)] font-light text-silver" : "mt-3 text-base text-silver"}>
+            {collection.tagline}
+          </p>
         </div>
         <ul
           aria-label={`Perfumes de ${collection.name}`}
-          className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium tracking-[0.14em] text-ivory md:flex-col md:items-end md:gap-y-2"
+          className="flex flex-wrap gap-x-5 gap-y-1 pr-9 text-sm font-medium tracking-[0.14em] text-ivory md:flex-col md:items-end md:gap-y-2 md:pr-0"
         >
           {perfumes.map((p) => (
             <li key={p.id}>{p.name}</li>
@@ -39,7 +55,11 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
         </ul>
       </div>
       {href && (
-        <span aria-hidden="true" className="absolute right-0 top-1/2 -translate-y-1/2 text-2xl text-champagne">
+        <span
+          aria-hidden="true"
+          // En móvil la flecha baja a la fila de perfumes (a la altura del relleno inferior) para no tocar el título.
+          className={`absolute right-0 text-2xl text-champagne md:top-1/2 md:-translate-y-1/2 ${page ? "bottom-[2.625rem]" : "bottom-[1.875rem]"} md:bottom-auto`}
+        >
           →
         </span>
       )}
@@ -51,7 +71,7 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
   return (
     <li>
       {href ? (
-        <Link href={href} className={cls}>
+        <Link href={href} className={cls} aria-label={`${collection.name}, ${collection.tagline}`}>
           {body}
         </Link>
       ) : (
@@ -61,19 +81,25 @@ function CollectionRow({ collection, index }: { collection: Collection; index: n
   );
 }
 
-export function CollectionIndex() {
+/** `home`: con su propio h2 «Cinco universos» (destino de #colecciones). `page`: sin título propio; la página aporta el h1 (`labelledBy`). */
+export function CollectionIndex({ variant = "home", labelledBy }: { variant?: Variant; labelledBy?: string } = {}) {
+  const page = variant === "page";
   return (
     <section
-      aria-labelledby="colecciones"
-      className="mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-[clamp(5rem,10vw,10rem)] pt-[clamp(3rem,6vw,5.5rem)]"
+      aria-labelledby={page ? labelledBy : "colecciones"}
+      className={`mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)] pb-[clamp(5rem,10vw,10rem)] ${
+        page ? "pt-0" : "pt-[clamp(3rem,6vw,5.5rem)]"
+      }`}
     >
       {/* Destino del ancla #colecciones: revelado solo de opacidad; un transform movería la posición real del destino. */}
-      <h2 id="colecciones" className="reveal-fade font-display text-[clamp(2rem,4vw,3.25rem)] font-light text-ivory">
-        Cinco universos
-      </h2>
-      <ol className="mt-10 border-t border-border md:mt-14">
+      {!page && (
+        <h2 id="colecciones" className="reveal-fade font-display text-[clamp(2rem,4vw,3.25rem)] font-light text-ivory">
+          Cinco universos
+        </h2>
+      )}
+      <ol className={`border-t border-border ${page ? "" : "mt-10 md:mt-14"}`}>
         {getCollections().map((c, i) => (
-          <CollectionRow key={c.id} collection={c} index={i} />
+          <CollectionRow key={c.id} collection={c} index={i} variant={variant} />
         ))}
       </ol>
     </section>

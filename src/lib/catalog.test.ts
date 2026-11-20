@@ -14,7 +14,7 @@ import {
 
 const EXPECTED: Record<string, string[]> = {
   voltara: ["ion", "pulse", "solaris"],
-  "flora-arcana": ["aurelis", "coralis", "virelia"],
+  "flora-arcana": ["aurelis", "corallis", "virelia"],
   cosmora: ["aurora", "eclipse", "orion"],
   prismatica: ["amethys", "aureon", "chroma"],
   thermae: ["blush", "glacier", "terra"],
@@ -50,10 +50,12 @@ describe("catálogo V1", () => {
     }
   });
 
-  it("usa CORALIS y excluye frascos y textos prohibidos", () => {
+  it("usa CORALLIS y excluye frascos y textos prohibidos", () => {
     const text = JSON.stringify([collections, perfumes]).toLowerCase();
-    expect(getPerfumeBySlug("coralis")?.name).toBe("CORALIS");
-    expect(text).not.toContain("corallis");
+    expect(getPerfumeBySlug("corallis")?.name).toBe("CORALLIS");
+    // La grafía antigua no sobrevive en ids, slugs, nombres ni textos; solo en la ruta física de la imagen (coralis.webp).
+    expect(getPerfumeBySlug("coralis")).toBeUndefined();
+    expect(text.replaceAll("flora-arcana/coralis.webp", "")).not.toMatch(/coralis/);
     expect(text).not.toContain("maison");
     for (const s of ["arc", "nymphea-nox", "nebula", "spectra", "ember"]) {
       expect(getPerfumeBySlug(s)).toBeUndefined();

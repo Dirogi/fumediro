@@ -27,11 +27,14 @@ function webpSize(buf: Buffer): { width: number; height: number } {
   throw new Error(`Formato WebP no reconocido: ${chunk}`);
 }
 
+// Excepción aprobada: el archivo físico de CORALLIS conserva su nombre original (coralis.webp); no se renombra ni duplica.
+const fileName: Record<string, string> = { corallis: "coralis" };
+
 describe("imágenes de producto", () => {
   it("cada perfume tiene exactamente una imagen en su ruta canónica", () => {
     for (const p of perfumes) {
       expect(p.images, p.id).toHaveLength(1);
-      expect(imageOf(p).src).toBe(`/images/products/${p.collectionId}/${p.slug}.webp`);
+      expect(imageOf(p).src).toBe(`/images/products/${p.collectionId}/${fileName[p.slug] ?? p.slug}.webp`);
     }
   });
 

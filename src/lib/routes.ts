@@ -10,15 +10,15 @@ export interface AppRoute {
 // Rutas de UX-SPEC §2. Activar una ruta = poner `ready: true` en su fase.
 export const routes = {
   home: { label: "Inicio", href: "/", ready: true },
-  collections: { label: "Colecciones", href: "/colecciones", ready: false, fallback: "/#colecciones" },
+  collections: { label: "Colecciones", href: "/colecciones", ready: true, fallback: "/#colecciones" },
   perfumes: { label: "Perfumes", href: "/perfumes", ready: true },
   quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: false },
   story: { label: "Nuestra historia", href: "/historia", ready: false },
   contact: { label: "Contacto", href: "/contacto", ready: false },
 } satisfies Record<string, AppRoute>;
 
-// Páginas /colecciones/[slug]: poner `ready: true` cuando exista la ruta dinámica.
-export const collectionPage = { href: "/colecciones", ready: false };
+// Páginas /colecciones/[slug]: activas desde D4-D.
+export const collectionPage = { href: "/colecciones", ready: true };
 
 // Fichas /perfumes/[slug]: poner `ready: true` cuando la plantilla de ficha esté aprobada (D5).
 export const perfumePage = { href: "/perfumes", ready: false };

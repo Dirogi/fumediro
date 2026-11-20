@@ -20,12 +20,12 @@
 | Colección | Slug | Tres fragancias incluidas en V1 |
 |---|---|---|
 | VOLTARA | `voltara` | ION (`ion`), PULSE (`pulse`), SOLARIS (`solaris`) |
-| FLORA ARCANA | `flora-arcana` | AURELIS (`aurelis`), CORALIS (`coralis`), VIRELIA (`virelia`) |
+| FLORA ARCANA | `flora-arcana` | AURELIS (`aurelis`), CORALLIS (`corallis`), VIRELIA (`virelia`) |
 | COSMORA | `cosmora` | AURORA (`aurora`), ECLIPSE (`eclipse`), ORION (`orion`) |
 | PRISMATICA | `prismatica` | AMETHYS (`amethys`), AUREON (`aureon`), CHROMA (`chroma`) |
 | THERMAE | `thermae` | BLUSH (`blush`), GLACIER (`glacier`), TERRA (`terra`) |
 
-**Ortografía obligatoria:** `CORALIS` (no «Corallis»). Los frascos maestros iniciales ARC, NYMPHEA NOX, NEBULA, SPECTRA y EMBER **no forman parte del catálogo de lanzamiento**, aunque sus imágenes puedan servir como referencia interna de dirección artística. Tampoco se lanza ningún cuarto perfume por colección hasta aprobación posterior. No insertar un producto adicional en la web para llenar una cuadrícula.
+**Ortografía obligatoria:** `CORALLIS` (no «Coralis»). Los frascos maestros iniciales ARC, NYMPHEA NOX, NEBULA, SPECTRA y EMBER **no forman parte del catálogo de lanzamiento**, aunque sus imágenes puedan servir como referencia interna de dirección artística. Tampoco se lanza ningún cuarto perfume por colección hasta aprobación posterior. No insertar un producto adicional en la web para llenar una cuadrícula.
 
 Cada fragancia debe pertenecer a una sola colección. Las colecciones contienen listas de IDs, no páginas duplicadas a mano.
 
@@ -39,7 +39,7 @@ Cada fragancia debe pertenecer a una sola colección. Las colecciones contienen 
 
 ### FLORA ARCANA — botánica imaginaria
 - Frascos que evocan flores singulares, orgánicas, no reproducciones literales de flores corrientes.
-- Perfumes V1: **AURELIS** (marfil/oro; espiral floral; neroli, magnolia y cítricos), **CORALIS** (coral opalino; cinco pétalos estructurales; perfil floral afrutado), **VIRELIA** (verde jade; cáliz vertical asimétrico; perfil verde amaderado).
+- Perfumes V1: **AURELIS** (marfil/oro; espiral floral; neroli, magnolia y cítricos), **CORALLIS** (coral opalino; cinco pétalos estructurales; perfil floral afrutado), **VIRELIA** (verde jade; cáliz vertical asimétrico; perfil verde amaderado).
 - Interacción: exploración de partes de la flor ficticia y relación con notas olfativas.
 
 ### COSMORA — universo encapsulado

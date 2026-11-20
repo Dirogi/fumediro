@@ -19,7 +19,7 @@
 - [ ] Validar programáticamente unicidad de IDs/slugs y pertenencia de perfumes.
 - [ ] Crear helpers de filtrado, consulta por slug y relación entre perfume y colección.
 - [ ] Crear componentes base del sistema de diseño, cabecera, pie y layout adaptable.
-- [ ] Añadir test que compruebe que cada colección V1 contiene **exactamente 3 perfumes**, incluida la grafía `coralis`.
+- [ ] Añadir test que compruebe que cada colección V1 contiene **exactamente 3 perfumes**, incluida la grafía `corallis`.
 
 **Salida:** estructura reutilizable; navegación básica y catálogo canónico centralizado.
 

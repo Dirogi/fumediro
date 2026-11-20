@@ -9,7 +9,7 @@ Este repositorio contiene la web de **Fumediro**, una marca **ficticia** de perf
 3. [`UX-SPEC.md`](./UX-SPEC.md): rutas, navegación, home, filtros, quiz, carrito e interacciones.
 4. [`IMPLEMENTATION-PLAN.md`](./IMPLEMENTATION-PLAN.md): orden de entrega y criterios de aceptación.
 
-Cuando haya una discrepancia, no improvisar: consultar la fuente específica, señalar el conflicto y proponer corrección mínima. No cambiar decisiones de producto cerradas sin aprobación. En particular, usar **CORALIS**, tres perfumes por colección y los nombres exactos indicados en `PRODUCT.md`.
+Cuando haya una discrepancia, no improvisar: consultar la fuente específica, señalar el conflicto y proponer corrección mínima. No cambiar decisiones de producto cerradas sin aprobación. En particular, usar **CORALLIS**, tres perfumes por colección y los nombres exactos indicados en `PRODUCT.md`.
 
 ## 2. Forma de trabajar
 

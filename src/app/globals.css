@@ -282,3 +282,28 @@ body:has(dialog[open]) {
     transition: none !important;
   }
 }
+
+/* COSMORA · cámara de partículas. La agitación es breve (1,2 s), solo transform/opacity, y termina en reposo.
+   Con movimiento reducido no hay animación: la agitación es un estado estático alternativo. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-moving="true"] .cosmora-particle {
+    animation: cosmora-drift 1.2s ease-in-out var(--delay, 0s) both;
+  }
+}
+
+[data-scattered="true"] .cosmora-particle {
+  transform: translate(var(--dx), var(--dy));
+  opacity: 1;
+}
+
+@keyframes cosmora-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: var(--rest);
+  }
+  40% {
+    transform: translate(var(--dx), var(--dy)) scale(1.35);
+    opacity: 1;
+  }
+}
