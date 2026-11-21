@@ -104,3 +104,13 @@ describe("helpers de rutas y navegación", () => {
     }
   });
 });
+
+describe("integridad de fichas", () => {
+  it("cada perfume tiene colección, imagen y slug = id", () => {
+    for (const p of perfumes) {
+      expect(getCollectionOfPerfume(p)).toBeDefined();
+      expect(p.images[0]?.width).toBeGreaterThan(0);
+      expect(p.slug).toBe(p.id);
+    }
+  });
+});

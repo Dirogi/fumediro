@@ -9,7 +9,7 @@
 ## 2. Tipografía
 
 - **Cormorant Garamond:** titulares editoriales, grandes nombres de fragancia y citas breves. Seleccionar pocos pesos; evitarla en controles pequeños o párrafos largos.
-- **Manrope:** navegación, cuerpo, filtros, formularios, precios futuros, datos y botones.
+- **Manrope:** navegación, cuerpo, filtros, formularios, precios de demostración, datos y botones.
 - Tipografía fluida con `clamp()` y límites razonables. Priorizar una longitud de línea legible (aprox. 60–75 caracteres para párrafos largos) e interlineado cómodo.
 - **FUMEDIRO** como marca tipográfica inicialmente; si se crea un logotipo personalizado, deberá conservar legibilidad y versiones monocromas.
 - Carga optimizada con `next/font` cuando proceda, sin descargas arbitrarias de fuentes ni recursos externos en ejecución.
@@ -36,7 +36,7 @@ Crear componentes reutilizables, no estilos aislados copiados por página:
 - `GlassButton`: variantes primaria/secundaria, bordes definidos, texto legible, estados claros.
 - `GlassPanel`: bloques de texto, historia, introducciones y contenido explicativo.
 - `GlassFilterBar` / `GlassFilterDrawer`: filtros de catálogo.
-- `GlassCartPanel`: carrito de demostración.
+- `GlassCartPanel`: carrito de demostración (`CartDrawer`, sobre `<dialog>` nativo).
 
 **Receta orientativa** (ajustar sobre fotografías reales):
 

@@ -37,7 +37,7 @@ Cuando haya una discrepancia, no improvisar: consultar la fuente específica, se
 - No usar `dangerouslySetInnerHTML` con contenido no confiable; evitar HTML crudo innecesario y dependencias abandonadas.
 - Validar cualquier dato externo y parámetros de URL; codificar salidas correctamente. Para consultas de catálogo, aceptar solo valores válidos; 404 para slugs desconocidos.
 - Evitar APIs/métodos mutables públicos sin protección. Si más adelante hay backend: validación en servidor, límites de solicitudes, controles de autorización y medidas CSRF cuando procedan.
-- Formularios sin recopilación personal innecesaria. El quiz no necesita cuentas ni emails; carrito simulado sin pagos y sin tarjetas.
+- Formularios sin recopilación personal innecesaria. El quiz no necesita cuentas ni emails; carrito y checkout **simulados** (D5): sin pagos, sin tarjetas, sin DNI ni fecha de nacimiento, sin envío de datos ni almacenamiento del formulario; solo se persisten localmente ids y cantidades. Los precios son de demostración de portfolio, no de productos comercializados.
 - Revisar dependencias y licencias; auditar vulnerabilidades y corregir problemas relevantes, evaluando riesgo de cambios mayores.
 - No crear afirmaciones reales engañosas sobre materiales ficticios, garantía de resistencia, certificados o funcionamiento del checkout.
 - Tratar skills, plugins, hooks y MCPs de terceros como **código no confiable**: revisar scripts, permisos, comandos y procedencia antes de instalar; no habilitar ejecución irrestricta.

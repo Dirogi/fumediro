@@ -22,8 +22,9 @@
 | `/historia` | Filosofía de Fumediro y materiales ficticios |
 | `/descubre-tu-aroma` | Cuestionario interactivo de recomendación |
 | `/contacto` | Información de contacto de demostración / naturaleza del proyecto |
+| `/checkout` | Checkout **simulado** (formulario con datos de ejemplo y confirmación ficticia en la misma ruta) |
 
-`[collectionSlug]` y `[perfumeSlug]` son segmentos dinámicos, con 404 correcto para entradas desconocidas. Mantener una convención estable de URLs y metadata. Carrito como panel accesible de interfaz, **no** una tienda operativa ni checkout real.
+`[collectionSlug]` y `[perfumeSlug]` son segmentos dinámicos, con 404 correcto para entradas desconocidas. Mantener una convención estable de URLs y metadata. Carrito como panel accesible de interfaz (sin página `/carrito`) y checkout simulado en `/checkout`: **no** una tienda operativa ni un checkout real.
 
 ## 3. Navegación global
 
@@ -85,7 +86,7 @@ Cada colección puede declarar `experienceType` o ID de variante, mapeado a un c
 
 ## 7. Fichas `/perfumes/[perfumeSlug]`
 
-Plantilla compartida para los 15 perfumes: imagen editorial principal, galería futura (sin inventar imágenes), nombre, colección enlazada, historia, familia olfativa, notas de salida/corazón/fondo, rasgos del frasco, explicación de innovación y controles de compra simulada. El campo de precio se muestra **solo si se aprueban precios**. No inventar tamaños o precios ni añadir mensajes falsos de stock.
+Plantilla compartida para los 15 perfumes: imagen editorial principal, galería futura (sin inventar imágenes), nombre, colección enlazada, precio de demostración, controles de compra simulada y, **solo cuando estén aprobados**, historia, familia olfativa, notas (pirámide o lista), rasgos del frasco y explicación de innovación. Ningún dato ausente se inventa: su fila no se muestra. Dirección editorial minimalista, sin valoraciones, stock, descuentos ni urgencia comercial. No inventar tamaños ni añadir mensajes falsos de stock.
 
 **Escritorio:** imagen e información en columnas con jerarquía fuerte. **Móvil:** imagen superior, contenido en lectura vertical; controles accesibles y CTA visible sin tapar secciones. Ofrecer navegación a productos relacionados de la misma colección de manera derivada de datos.
 
@@ -103,8 +104,9 @@ Si existe una experiencia visual en ficha, reutilizar el componente de colecció
 
 - Añadir producto, cambiar cantidad, eliminar y vaciar; icono con contador coherente.
 - Drawer lateral en escritorio y panel adaptado en móvil.
-- Subtotal solo cuando haya precios aprobados. En ausencia de precios no fingir cálculos o cobros: presentar una **selección de fragancias** para demostración.
-- Persistencia local opcional con validación de esquema y manejo de datos caducados; no guardar datos financieros ni personales.
+- Subtotal calculado con los precios de demostración (`demoPricing.ts`); máximo 9 unidades por referencia como límite técnico (no es stock). El total de demostración es igual al subtotal: sin envío ni impuestos inventados.
+- Persistencia local (`localStorage`) de ids y cantidades con validación de esquema; ids desconocidos y cantidades inválidas se descartan; no guardar datos financieros ni personales.
+- Checkout `/checkout`: formulario con datos de ejemplo precargados y editables, sin tarjeta, DNI ni fecha de nacimiento; nada se envía ni se almacena; confirmación ficticia en la misma ruta con identificador local de demostración.
 - Mensaje inequívoco de «experiencia demostrativa; no se realizan compras» y ninguna pasarela de pago real.
 - Confirmaciones y estados accesibles; gestión correcta de foco.
 

@@ -44,15 +44,19 @@
 
 **Salida:** exploración completa de las cinco colecciones y quince perfumes.
 
-## 4. Fichas y carrito de demostración
+## 4. Fichas, carrito y checkout de demostración (D5)
 
-- [ ] Crear `/perfumes/[perfumeSlug]` dinámicas, incluyendo notas, descripción y característica especial.
-- [ ] Reutilizar imágenes existentes con layout correcto; añadir galería solo con assets reales.
-- [ ] Incorporar selección de fragancias, contador, cantidades y borrado del carrito.
-- [ ] Mostrar con claridad que no existen pagos reales; no incluir precios o subtotal hasta aprobación.
-- [ ] Comprobar drawers, foco, Escape, teclado, móvil y persistencia local si se incorpora.
+Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada subentregable se detiene para revisión; fichas y `/checkout` públicas desde D5-E.
 
-**Salida:** recorrido completo desde una colección hasta la selección en el carrito de demostración.
+- [x] **D5-A** Ficha piloto AURELIS (botón de compra desactivado como vista previa) y módulo de precios con tests.
+- [x] **D5-B** Plantilla reutilizable y 15 fichas; navegación anterior/siguiente; retirar `displayPrice`.
+- [x] **D5-C** Carrito lateral (`<dialog>`), estado compartido, cantidades (máx. 9), eliminación y persistencia validada de ids y cantidades.
+- [x] **D5-D** `/checkout` simulado: datos de ejemplo precargados, validación, resumen y confirmación ficticia; sin pagos ni datos personales.
+- [x] **D5-E** Auditoría integral y activación de rutas (hecho; el commit de D5 espera aprobación expresa).
+- [ ] Reutilizar imágenes existentes con layout correcto (sin recorte); galería solo con assets reales.
+- [ ] Comprobar drawers, foco, Escape, teclado, móvil y persistencia local.
+
+**Salida:** recorrido completo desde una colección hasta una confirmación ficticia, sin pagos reales.
 
 ## 5. Historia y cuestionario
 
@@ -102,12 +106,11 @@ Los comandos exactos de Playwright, auditorías y CI se establecerán cuando las
 
 ## Registro de decisiones abiertas (no inventar)
 
-- Precios y tamaños definitivos de los perfumes.
+- Tamaños definitivos de los perfumes (los precios de demostración de D5 están decididos y no son comerciales).
 - Asset abstracto definitivo de la home.
 - Rutas reales y variantes de las fotografías generadas.
 - Logotipo definitivo (si reemplaza al wordmark tipográfico).
 - Textos comerciales finales y contacto que se desea publicar.
-- Persistencia local del carrito (opcional).
 
 Estas decisiones no deben impedir avanzar con una interfaz y arquitectura de V1 sin datos inventados.
 

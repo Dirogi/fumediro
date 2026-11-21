@@ -15,13 +15,15 @@ export const routes = {
   quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: false },
   story: { label: "Nuestra historia", href: "/historia", ready: false },
   contact: { label: "Contacto", href: "/contacto", ready: false },
+  // Checkout simulado (D5): no figura en la navegación; se llega desde el carrito.
+  checkout: { label: "Finalizar selección", href: "/checkout", ready: true },
 } satisfies Record<string, AppRoute>;
 
 // Páginas /colecciones/[slug]: activas desde D4-D.
 export const collectionPage = { href: "/colecciones", ready: true };
 
-// Fichas /perfumes/[slug]: poner `ready: true` cuando la plantilla de ficha esté aprobada (D5).
-export const perfumePage = { href: "/perfumes", ready: false };
+// Fichas /perfumes/[slug]: activas desde D5 (las 15 rutas salen de generateStaticParams).
+export const perfumePage = { href: "/perfumes", ready: true };
 
 export const perfumeRoute = (slug: string, label: string): AppRoute => ({
   label,

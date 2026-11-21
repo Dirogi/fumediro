@@ -63,9 +63,11 @@ Cada fragancia debe pertenecer a una sola colección. Las colecciones contienen 
 
 ## 5. Información que debe tener cada perfume
 
-Modelo de datos previsto: `id`, `slug`, `collectionId`, `name`, `shortDescription`, `story`, `olfactoryFamily`, `characterTags`, `topNotes`, `heartNotes`, `baseNotes`, `accentColor`, `images` (referencias locales), `specialFeature`, `availableFormats`, `displayPrice` (solo cuando se apruebe), `isFeatured` (opcional). Todos los campos públicos deben ser coherentes con lo visible.
+Modelo de datos previsto: `id`, `slug`, `collectionId`, `name`, `shortDescription`, `story`, `olfactoryFamily`, `characterTags`, `topNotes`, `heartNotes`, `baseNotes`, `accentColor`, `images` (referencias locales), `specialFeature`, `availableFormats`, `isFeatured` (opcional); los precios viven aparte en `src/data/demoPricing.ts`. Todos los campos públicos deben ser coherentes con lo visible.
 
-**No están definidos todavía:** precios, tamaños definitivos, textos comerciales finales completos, inventario, promociones, envíos, logística ni obligaciones de una tienda real. No inventarlos. Para el prototipo, no mostrar precio hasta su aprobación o usar una etiqueta inequívoca de demostración si se decide posteriormente.
+**Precios de demostración (D5):** importes ficticios en euros, en céntimos, en `src/data/demoPricing.ts`, separados de las características de los perfumes. Corresponden a una demostración de portfolio, **no** a productos comercializados, y se rotulan como tales en la interfaz.
+
+**No están definidos:** tamaños, volumen, concentración, textos comerciales finales completos, inventario, promociones, envíos, impuestos, logística ni obligaciones de una tienda real. No inventarlos.
 
 ## 6. Objetivos de la primera versión
 
@@ -74,13 +76,13 @@ Modelo de datos previsto: `id`, `slug`, `collectionId`, `name`, `shortDescriptio
 - Descubrir y filtrar 15 fragancias sin lag ni interacciones intrusivas.
 - Consultar fichas dinámicas de producto y notas olfativas.
 - Completar un cuestionario de recomendación determinista y explicable.
-- Añadir productos a un carrito **de demostración**, sin cobros ni datos de tarjeta.
+- Añadir productos a un carrito **de demostración** y completar un checkout **simulado** con confirmación ficticia, sin cobros, sin datos de tarjeta y sin pedidos reales.
 - Ofrecer experiencia excelente para smartphone, tablet, ordenador, teclado y tecnologías de asistencia.
 - Permitir añadir fragancias/colecciones a partir de datos y recursos, no de páginas copiadas.
 
 ## 7. Fuera del alcance inicial
 
-- Checkout real, pasarelas de pago, cuentas de usuario, base de datos de clientes, seguimiento de pedidos o stock real.
+- Checkout **real** (el simulado de D5 sí entra en alcance), pasarelas de pago, cuentas de usuario, base de datos de clientes, seguimiento de pedidos o stock real.
 - Modelado 3D obligatorio, WebGL en todas las páginas, sistemas de partículas pesados.
 - CMS o backend sin una necesidad demostrada.
 - Generación automática de imágenes desde la aplicación.

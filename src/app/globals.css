@@ -13,6 +13,7 @@
   --border: rgb(242 238 230 / 24%);
   --muted: var(--color-silver);
   --focus: var(--color-champagne);
+  --error: #f0a899; /* errores de formulario: texto, borde y resumen */
 }
 
 @theme inline {
@@ -27,6 +28,7 @@
   --color-border: var(--border);
   --color-muted: var(--muted);
   --color-focus: var(--focus);
+  --color-error: var(--error);
   --font-display: var(--font-cormorant), serif;
   --font-sans: var(--font-manrope), system-ui, sans-serif;
 }
@@ -141,6 +143,118 @@ body::before {
 
 body:has(dialog[open]) {
   overflow: hidden;
+}
+
+/* ---- Carrito (D5-C): panel lateral sobre <dialog> modal; opaco como el menú para cumplir AA. ---- */
+.cart-dialog {
+  width: min(100%, 26rem);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+}
+
+.cart-dialog::backdrop {
+  background: rgb(20 23 27 / 72%);
+}
+
+.cart-panel {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: inset 1px 0 0 rgb(199 173 131 / 18%);
+}
+
+.cart-body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Barra fina y grafito (estándar: Chrome 121+, Firefox, Safari 18.2+); en otros se ve la nativa. */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(185 192 199 / 40%) transparent;
+}
+
+.cart-footer {
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
+.cart-dialog[open] {
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+@starting-style {
+  .cart-dialog[open] {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-dialog[open] {
+    transition: opacity 120ms linear;
+  }
+  @starting-style {
+    .cart-dialog[open] {
+      transform: none;
+    }
+  }
+}
+
+/* Confirmación discreta al añadir; con el panel abierto no se muestra (el aviso va dentro). */
+.cart-toast-region {
+  pointer-events: none;
+  position: fixed;
+  inset-inline: 0;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+}
+
+.cart-toast {
+  max-width: 32rem;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  color: var(--color-ivory);
+  background: var(--color-charcoal);
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+@starting-style {
+  .cart-toast {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-toast {
+    transition: opacity 120ms linear;
+  }
+  @starting-style {
+    .cart-toast {
+      transform: none;
+    }
+  }
+}
+
+body:has(dialog[open]) .cart-toast-region {
+  display: none;
 }
 
 /* ---- Hero (D3, estático) ---- */
