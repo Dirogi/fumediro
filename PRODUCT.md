@@ -69,6 +69,8 @@ Modelo de datos previsto: `id`, `slug`, `collectionId`, `name`, `shortDescriptio
 
 **No están definidos:** tamaños, volumen, concentración, textos comerciales finales completos, inventario, promociones, envíos, impuestos, logística ni obligaciones de una tienda real. No inventarlos.
 
+**Cuestionario (D6):** las asociaciones de descubrimiento (paleta, territorio, forma, concepto) viven en `src/data/scentFinder.ts`, separadas de los datos oficiales; son una interpretación editorial, no propiedades del producto. Los campos `characterTags` y `quizAttributes` no se usan por ahora. Desde D6-D el cuestionario es público en `/descubre-tu-aroma`; las explicaciones citan siempre el dato oficial (AURELIS, sin familia olfativa, solo sus notas).
+
 ## 6. Objetivos de la primera versión
 
 - Presentar una identidad de marca original, profesional y coherente.

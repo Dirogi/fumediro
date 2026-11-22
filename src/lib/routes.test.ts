@@ -72,11 +72,11 @@ describe("registro de rutas", () => {
     }
   });
 
-  it("solo Inicio, Colecciones, Perfumes y Checkout son enlaces; quiz, historia y contacto siguen inactivos", () => {
+  it("son enlaces Inicio, Colecciones, Perfumes, Descubre tu aroma y Checkout; historia y contacto siguen inactivos", () => {
     const active = Object.entries(routes)
       .filter(([, r]) => resolveHref(r) !== null)
       .map(([key]) => key);
-    expect(active).toEqual(["home", "collections", "perfumes", "checkout"]);
+    expect(active).toEqual(["home", "collections", "perfumes", "quiz", "checkout"]);
     expect(resolveHref(routes.collections)).toBe("/colecciones");
   });
 });

@@ -61,9 +61,11 @@ Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada su
 ## 5. Historia y cuestionario
 
 - [ ] Crear `/historia` con Fumediro, materiales ficticios y contexto de portfolio.
-- [ ] Definir atributos de recomendación a partir de datos reales del catálogo.
-- [ ] Implementar 4–5 pasos del cuestionario con progreso, retroceso, reinicio y resultado explicado.
-- [ ] Testear la función pura de recomendación y casos límite.
+- [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
+- [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
+- [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).
+- [x] **D6-D** Auditoría y activación pública (`routes.quiz.ready = true`): frases de resultado refinadas, ruta pública, guard de desarrollo eliminado, auditoría de accesibilidad/responsive/privacidad. Cierre de D6 aprobado y guardado en un único commit.
+- [x] Testear la función pura de recomendación y casos límite (incluye simulación exhaustiva).
 - [ ] Comprobar accesibilidad de inputs, estados y navegación del cuestionario.
 
 **Salida:** historia convincente y experiencia interactiva funcional, no aleatoria.
