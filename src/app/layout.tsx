@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { CartProvider } from "@/components/CartProvider";
 import { GlassNav } from "@/components/GlassNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SkipLink } from "@/components/SkipLink";
@@ -33,10 +34,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${cormorant.variable} ${manrope.variable}`}>
       <body className="min-h-dvh antialiased">
-        <SkipLink />
-        <GlassNav />
-        {children}
-        <SiteFooter />
+        <CartProvider>
+          <SkipLink />
+          <GlassNav />
+          {children}
+          <SiteFooter />
+        </CartProvider>
       </body>
     </html>
   );

@@ -22,8 +22,9 @@
 | `/historia` | Filosofía de Fumediro y materiales ficticios |
 | `/descubre-tu-aroma` | Cuestionario interactivo de recomendación |
 | `/contacto` | Información de contacto de demostración / naturaleza del proyecto |
+| `/checkout` | Checkout **simulado** (formulario con datos de ejemplo y confirmación ficticia en la misma ruta) |
 
-`[collectionSlug]` y `[perfumeSlug]` son segmentos dinámicos, con 404 correcto para entradas desconocidas. Mantener una convención estable de URLs y metadata. Carrito como panel accesible de interfaz, **no** una tienda operativa ni checkout real.
+`[collectionSlug]` y `[perfumeSlug]` son segmentos dinámicos, con 404 correcto para entradas desconocidas. Mantener una convención estable de URLs y metadata. Carrito como panel accesible de interfaz (sin página `/carrito`) y checkout simulado en `/checkout`: **no** una tienda operativa ni un checkout real.
 
 ## 3. Navegación global
 
@@ -85,7 +86,7 @@ Cada colección puede declarar `experienceType` o ID de variante, mapeado a un c
 
 ## 7. Fichas `/perfumes/[perfumeSlug]`
 
-Plantilla compartida para los 15 perfumes: imagen editorial principal, galería futura (sin inventar imágenes), nombre, colección enlazada, historia, familia olfativa, notas de salida/corazón/fondo, rasgos del frasco, explicación de innovación y controles de compra simulada. El campo de precio se muestra **solo si se aprueban precios**. No inventar tamaños o precios ni añadir mensajes falsos de stock.
+Plantilla compartida para los 15 perfumes: imagen editorial principal, galería futura (sin inventar imágenes), nombre, colección enlazada, precio de demostración, controles de compra simulada y, **solo cuando estén aprobados**, historia, familia olfativa, notas (pirámide o lista), rasgos del frasco y explicación de innovación. Ningún dato ausente se inventa: su fila no se muestra. Dirección editorial minimalista, sin valoraciones, stock, descuentos ni urgencia comercial. No inventar tamaños ni añadir mensajes falsos de stock.
 
 **Escritorio:** imagen e información en columnas con jerarquía fuerte. **Móvil:** imagen superior, contenido en lectura vertical; controles accesibles y CTA visible sin tapar secciones. Ofrecer navegación a productos relacionados de la misma colección de manera derivada de datos.
 
@@ -93,24 +94,33 @@ Si existe una experiencia visual en ficha, reutilizar el componente de colecció
 
 ## 8. Cuestionario `/descubre-tu-aroma`
 
-**Nombre de trabajo:** *The Scent Finder*. Cuatro o cinco preguntas concisas sobre preferencias sensoriales (atmósfera, familia olfativa, intensidad percibida, notas o contexto de uso, según lo que esté efectivamente modelado). No incluir inferencias sensibles ni datos personales.
+**Nombre de trabajo:** *The Scent Finder*. Cuatro preguntas, una respuesta por pantalla: **paleta** (Verdes; Azules y plata; Rosas y corales; Magenta y violeta; Oro, cobre y tierra), **territorio olfativo** (Floral; Verde y fresco; Amaderado; Ámbar y especias), **forma** (Curvas y formas botánicas; Facetas y geometría; Luz y reflejos; Volúmenes y vetas) y **concepto de colección** (Luz interior, Flor imaginada, Cosmos sellado, Reflejos y refracción, Respuesta cromática al calor). Sin inferencias sensibles ni datos personales.
 
-**Lógica:** función pura, determinista y probada que puntúa perfumes por `olfactoryFamily`, `characterTags` y notas disponibles; desempate estable, explicaciones legibles («te recomendamos X por ...»), no selección aleatoria ni promesas científicas. Mostrar 1 recomendación principal y 1–2 alternativas solo si están justificadas. Evitar un cuestionario que siempre devuelva un producto fijo. La adición de perfumes deberá poder incluirlos en la recomendación sin reprogramar preguntas específicas.
+**Lógica:** función pura, determinista y probada (`src/lib/scentFinder.ts`) sobre una capa interpretativa independiente del catálogo (`src/data/scentFinder.ts`). Cada perfume tiene una asociación principal (3 puntos) y, si procede, una secundaria (1 punto) por paleta, territorio y forma; el concepto suma 3 si coincide con su colección. Toda asociación cita el dato oficial que la respalda (`olfactoryFamily`, `notes`, `colorway` o `specialFeature`); sin esa evidencia no puntúa. Desempate: 1) puntuación total, 2) afinidad con el territorio, 3) con la forma, 4) con la paleta, 5) orden del catálogo. Sin azar, sin porcentajes de compatibilidad, sin precios. Una recomendación principal y hasta dos alternativas con coincidencias en al menos dos dimensiones. Las asociaciones son una lectura editorial de descubrimiento, no propiedades físicas u olfativas. Añadir un perfume = añadir su perfil en `scentFinder.ts`.
 
-**UX:** progreso visible, atrás/cambiar respuesta, resultados, reiniciar, teclado completo, estados de foco y persistencia opcional **local** únicamente si aporta valor. Sin cuenta, email ni recogida de datos personales.
+**UX:** bienvenida («Descubre tu aroma.», «Comenzar»), progreso visible («Pregunta n de 4»), radios nativos con «Continuar» (sin avance automático; indica por qué está inactivo), «Atrás» con selección conservada, «Reiniciar», gestión de foco y teclado completo. Las respuestas solo viven en memoria: sin cuenta, email, persistencia ni envío. **Resultado (D6-C):** «Tu universo tiene una forma.» con fotografía y nombre de la fragancia principal, las razones (una por coincidencia, con la cita concreta del dato oficial y la opción elegida), un aviso editorial discreto, acciones «Descubrir [perfume]» y «Explorar [colección]» hacia las páginas reales, y «Quizá también te atraigan.» con 0, 1 o 2 alternativas (nunca se rellenan). Sin puntuaciones, porcentajes, precio ni carrito. «Cambiar respuestas» conserva la selección; «Volver a empezar» la borra. **Activación (D6-D):** `routes.quiz.ready = true`; `/descubre-tu-aroma` es pública (cabecera, menú móvil, pie y cierre de la Home la enlazan) y se indexa con metadatos propios. Las razones usan plantillas cortas por tipo de evidencia y nivel (principal/secundaria), citan el dato oficial sin comillas y no repiten fórmulas.
 
 ## 9. Carrito de demostración
 
 - Añadir producto, cambiar cantidad, eliminar y vaciar; icono con contador coherente.
 - Drawer lateral en escritorio y panel adaptado en móvil.
-- Subtotal solo cuando haya precios aprobados. En ausencia de precios no fingir cálculos o cobros: presentar una **selección de fragancias** para demostración.
-- Persistencia local opcional con validación de esquema y manejo de datos caducados; no guardar datos financieros ni personales.
+- Subtotal calculado con los precios de demostración (`demoPricing.ts`); máximo 9 unidades por referencia como límite técnico (no es stock). El total de demostración es igual al subtotal: sin envío ni impuestos inventados.
+- Persistencia local (`localStorage`) de ids y cantidades con validación de esquema; ids desconocidos y cantidades inválidas se descartan; no guardar datos financieros ni personales.
+- Checkout `/checkout`: formulario con datos de ejemplo precargados y editables, sin tarjeta, DNI ni fecha de nacimiento; nada se envía ni se almacena; confirmación ficticia en la misma ruta con identificador local de demostración.
 - Mensaje inequívoco de «experiencia demostrativa; no se realizan compras» y ninguna pasarela de pago real.
 - Confirmaciones y estados accesibles; gestión correcta de foco.
 
 ## 10. Historia `/historia`
 
 Narrativa sobria: visión de Fumediro, cinco colecciones, diseño escultórico, materiales DiroCore™ y las tecnologías ficticias asociadas. Explicar de forma transparente que es un **proyecto conceptual de portfolio**. No inventar fechas de fundación, laboratorios, premios, patentes o certificaciones. Contenido organizado en secciones editoriales y paneles de cristal selectivos.
+
+**Estructura (D7-B, textos aprobados):** cabecera «Nuestra historia.» con entradilla; I Manifiesto («Un perfume no termina en su aroma.», lema una sola vez con `lang="en"`, sin traducción); II «La forma también habla.» (banda grafito; ION, AUREON y CORALLIS en su proporción real, pies con enlace a la ficha; DiroCore™ presentado como familia ficticia); III «Cinco formas de imaginar.» (cinco filas-enlace a las colecciones; luz ambiental solo con hover/foco, nada esencial depende de ella); IV «Empieza por donde quieras.» (acción principal «Descubre tu aroma», secundarias «Ver los quince perfumes» y «Explorar colecciones», y nota de proyecto conceptual). Textos de catálogo en `src/data/story.ts`. Activa desde D7-D: la enlazan cabecera, menú móvil y pie, y se indexa con metadatos propios.
+
+**Contacto (D8-B, textos aprobados):** `/contacto` sin formulario ni backend: H1 «Toda idea empieza con una conversación.», entradilla, bloque «Hablemos de ideas.», un único panel de cristal con «Escribir un correo» (`mailto:` con asunto «Sobre FUMEDIRO») y «Ver mi portfolio» (nueva pestaña, `noopener noreferrer`, anunciada a lectores de pantalla) y nota de transparencia en banda grafito. En móvil el panel de acciones precede al bloque editorial. Activa públicamente desde D8-D (`routes.contact.ready = true`, guard de desarrollo eliminado, metadata propia, indexable); permanece solo en el pie, no en cabecera ni menú móvil.
+
+**Ajustes D8-C2:** el menú móvil ya no muestra el aviso «Otras secciones se abrirán por fases». Las migas amplían su área pulsable con un `::after` (sin mover el texto). Los enlaces del índice de colecciones usan un nombre accesible que contiene el texto visible. PERF-1 (aviso de consola en `/perfumes` con viewports estrechos: la precarga de las tres primeras tarjetas pide `w=384` mientras la imagen usa `w=640`) se deja sin cambios: es un desajuste de candidatos de `srcset` sin evidencia de impacto medido en LCP; revisar tras publicar con métricas reales.
+
+**Cierre D8-D:** Contacto activa; todas las rutas de `routes.ts` están activas. SEO dependiente de la URL de publicación (`metadataBase`, canonical, Open Graph/Twitter, `robots.ts`, `sitemap.ts`) pendiente hasta definir el dominio; checkout mantiene `noindex`. No verificados: zoom real al 200 % ni lector de pantalla real.
 
 ## 11. Contratos de experiencia
 

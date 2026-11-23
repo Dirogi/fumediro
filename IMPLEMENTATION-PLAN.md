@@ -19,7 +19,7 @@
 - [ ] Validar programáticamente unicidad de IDs/slugs y pertenencia de perfumes.
 - [ ] Crear helpers de filtrado, consulta por slug y relación entre perfume y colección.
 - [ ] Crear componentes base del sistema de diseño, cabecera, pie y layout adaptable.
-- [ ] Añadir test que compruebe que cada colección V1 contiene **exactamente 3 perfumes**, incluida la grafía `coralis`.
+- [ ] Añadir test que compruebe que cada colección V1 contiene **exactamente 3 perfumes**, incluida la grafía `corallis`.
 
 **Salida:** estructura reutilizable; navegación básica y catálogo canónico centralizado.
 
@@ -44,22 +44,39 @@
 
 **Salida:** exploración completa de las cinco colecciones y quince perfumes.
 
-## 4. Fichas y carrito de demostración
+## 4. Fichas, carrito y checkout de demostración (D5)
 
-- [ ] Crear `/perfumes/[perfumeSlug]` dinámicas, incluyendo notas, descripción y característica especial.
-- [ ] Reutilizar imágenes existentes con layout correcto; añadir galería solo con assets reales.
-- [ ] Incorporar selección de fragancias, contador, cantidades y borrado del carrito.
-- [ ] Mostrar con claridad que no existen pagos reales; no incluir precios o subtotal hasta aprobación.
-- [ ] Comprobar drawers, foco, Escape, teclado, móvil y persistencia local si se incorpora.
+Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada subentregable se detiene para revisión; fichas y `/checkout` públicas desde D5-E.
 
-**Salida:** recorrido completo desde una colección hasta la selección en el carrito de demostración.
+- [x] **D5-A** Ficha piloto AURELIS (botón de compra desactivado como vista previa) y módulo de precios con tests.
+- [x] **D5-B** Plantilla reutilizable y 15 fichas; navegación anterior/siguiente; retirar `displayPrice`.
+- [x] **D5-C** Carrito lateral (`<dialog>`), estado compartido, cantidades (máx. 9), eliminación y persistencia validada de ids y cantidades.
+- [x] **D5-D** `/checkout` simulado: datos de ejemplo precargados, validación, resumen y confirmación ficticia; sin pagos ni datos personales.
+- [x] **D5-E** Auditoría integral y activación de rutas (hecho; el commit de D5 espera aprobación expresa).
+- [ ] Reutilizar imágenes existentes con layout correcto (sin recorte); galería solo con assets reales.
+- [ ] Comprobar drawers, foco, Escape, teclado, móvil y persistencia local.
+
+**Salida:** recorrido completo desde una colección hasta una confirmación ficticia, sin pagos reales.
 
 ## 5. Historia y cuestionario
 
-- [ ] Crear `/historia` con Fumediro, materiales ficticios y contexto de portfolio.
-- [ ] Definir atributos de recomendación a partir de datos reales del catálogo.
-- [ ] Implementar 4–5 pasos del cuestionario con progreso, retroceso, reinicio y resultado explicado.
-- [ ] Testear la función pura de recomendación y casos límite.
+- [x] Crear `/historia` con Fumediro, materiales ficticios y contexto de portfolio.
+  - [x] **D7-A** Narrativa, textos y dirección artística aprobados (cuatro capítulos).
+  - [x] **D7-B** Primera versión de `/historia` (`src/app/historia/page.tsx`, `StoryForms`, `StoryUniverses`, `src/data/story.ts`).
+  - [x] **D7-C** Visibilidad y refinamiento: el capítulo IV «vacío» era un artefacto del navegador de pruebas (sin frames no avanzan las transiciones de `RevealOnView`; ocurre igual en Home y `/colecciones`), sin cambios de código.
+  - [x] **D7-D** Auditoría y activación pública (`routes.story.ready = true`, guard de desarrollo eliminado, test de rutas actualizado, metadata propia, indexable). Técnicamente terminada; el commit único de D7 espera aprobación final.
+- [x] Crear `/contacto` (D8).
+  - [x] **D8-A** Planificación aprobada (correo `mailto:` + portfolio, sin formulario ni backend).
+  - [x] **D8-B** `/contacto` implementada (`src/app/contacto/page.tsx`), solo en desarrollo; pendiente de revisión visual.
+  - [x] **D8-C1** Diagnóstico completado (sin bloqueantes; hallazgos UX-1, A11Y-1/2, PERF-1, SEO y documentación).
+  - [x] **D8-C2** Correcciones implementadas, pendientes de revisión: aviso obsoleto del menú móvil retirado, nombre accesible de las colecciones, área pulsable de las migas (~44 px), README y CI mínimo (`.github/workflows/ci.yml`). PERF-1 documentado sin cambios de código (ver `UX-SPEC.md`).
+  - **Decisiones pendientes para la publicación:** dominio y plataforma; con la URL definitiva, `metadataBase`, canonical, Open Graph/Twitter, `robots.ts` y `sitemap.ts` (se mantiene `noindex` en checkout; sin imágenes OG nuevas ni datos estructurados que presenten la marca como empresa real); licencia; enlace de despliegue y capturas del README.
+  - [x] **D8-D** Activación de Contacto (`routes.contact.ready = true`, guard de desarrollo eliminado) y verificaciones finales. Técnicamente completada; pendiente de revisión y commit. El CI no se ha ejecutado aún en GitHub.
+- [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
+- [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
+- [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).
+- [x] **D6-D** Auditoría y activación pública (`routes.quiz.ready = true`): frases de resultado refinadas, ruta pública, guard de desarrollo eliminado, auditoría de accesibilidad/responsive/privacidad. Cierre de D6 aprobado y guardado en un único commit.
+- [x] Testear la función pura de recomendación y casos límite (incluye simulación exhaustiva).
 - [ ] Comprobar accesibilidad de inputs, estados y navegación del cuestionario.
 
 **Salida:** historia convincente y experiencia interactiva funcional, no aleatoria.
@@ -102,12 +119,11 @@ Los comandos exactos de Playwright, auditorías y CI se establecerán cuando las
 
 ## Registro de decisiones abiertas (no inventar)
 
-- Precios y tamaños definitivos de los perfumes.
+- Tamaños definitivos de los perfumes (los precios de demostración de D5 están decididos y no son comerciales).
 - Asset abstracto definitivo de la home.
 - Rutas reales y variantes de las fotografías generadas.
 - Logotipo definitivo (si reemplaza al wordmark tipográfico).
 - Textos comerciales finales y contacto que se desea publicar.
-- Persistencia local del carrito (opcional).
 
 Estas decisiones no deben impedir avanzar con una interfaz y arquitectura de V1 sin datos inventados.
 

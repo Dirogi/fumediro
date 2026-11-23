@@ -63,7 +63,6 @@ export interface Perfume {
   accentColor?: string;
   images: ImageRef[];
   availableFormats?: { id: string; label: string }[];
-  displayPrice?: { amount: number; currency: string; isDemo: boolean };
   /** Atributos del cuestionario (Fase 5); se definirán con el quiz. */
   quizAttributes?: Record<string, string | number>;
   isFeatured?: boolean;

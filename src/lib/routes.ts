@@ -10,15 +10,26 @@ export interface AppRoute {
 // Rutas de UX-SPEC §2. Activar una ruta = poner `ready: true` en su fase.
 export const routes = {
   home: { label: "Inicio", href: "/", ready: true },
-  collections: { label: "Colecciones", href: "/colecciones", ready: false, fallback: "/#colecciones" },
-  perfumes: { label: "Perfumes", href: "/perfumes", ready: false },
-  quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: false },
-  story: { label: "Nuestra historia", href: "/historia", ready: false },
-  contact: { label: "Contacto", href: "/contacto", ready: false },
+  collections: { label: "Colecciones", href: "/colecciones", ready: true, fallback: "/#colecciones" },
+  perfumes: { label: "Perfumes", href: "/perfumes", ready: true },
+  quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: true },
+  story: { label: "Nuestra historia", href: "/historia", ready: true },
+  contact: { label: "Contacto", href: "/contacto", ready: true },
+  // Checkout simulado (D5): no figura en la navegación; se llega desde el carrito.
+  checkout: { label: "Finalizar selección", href: "/checkout", ready: true },
 } satisfies Record<string, AppRoute>;
 
-// Páginas /colecciones/[slug]: poner `ready: true` cuando exista la ruta dinámica.
-export const collectionPage = { href: "/colecciones", ready: false };
+// Páginas /colecciones/[slug]: activas desde D4-D.
+export const collectionPage = { href: "/colecciones", ready: true };
+
+// Fichas /perfumes/[slug]: activas desde D5 (las 15 rutas salen de generateStaticParams).
+export const perfumePage = { href: "/perfumes", ready: true };
+
+export const perfumeRoute = (slug: string, label: string): AppRoute => ({
+  label,
+  href: `${perfumePage.href}/${slug}`,
+  ready: perfumePage.ready,
+});
 
 export const collectionRoute = (slug: string, label: string): AppRoute => ({
   label,

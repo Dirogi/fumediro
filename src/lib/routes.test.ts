@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { collectionPage, collectionRoute, resolveHref, routes, type AppRoute } from "@/lib/routes";
+import { collections } from "@/data/collections";
+import { perfumes } from "@/data/perfumes";
+import { collectionPage, collectionRoute, perfumePage, footerNav, perfumeRoute, primaryNav, resolveHref, routes, type AppRoute } from "@/lib/routes";
+
+describe("perfumeRoute", () => {
+  it("compone el href y enlaza a la ficha activa", () => {
+    const r = perfumeRoute("ion", "ION");
+    expect(r.href).toBe("/perfumes/ion");
+    expect(r.ready).toBe(perfumePage.ready);
+    expect(resolveHref(r)).toBe("/perfumes/ion");
+  });
+});
 
 describe("resolveHref", () => {
   it("devuelve href si la ruta está lista", () => {
@@ -26,8 +37,28 @@ describe("collectionRoute", () => {
     expect(r.ready).toBe(collectionPage.ready);
   });
 
-  it("hoy es inactiva: no genera enlaces a rutas inexistentes", () => {
-    expect(resolveHref(collectionRoute("cosmora", "COSMORA"))).toBeNull();
+  it("D4-D: las cinco colecciones están activas y enlazan a su página", () => {
+    expect(collectionPage.ready).toBe(true);
+    expect(collections).toHaveLength(5);
+    for (const c of collections) expect(resolveHref(collectionRoute(c.slug, c.name))).toBe(`/colecciones/${c.slug}`);
+  });
+
+  it("D5-E: las 15 fichas están activas con href único; CORALLIS usa su slug y «coralis» no existe", () => {
+    expect(perfumePage.ready).toBe(true);
+    expect(perfumes).toHaveLength(15);
+    const hrefs = perfumes.map((p) => resolveHref(perfumeRoute(p.slug, p.name)));
+    expect(hrefs).toEqual(perfumes.map((p) => `/perfumes/${p.slug}`));
+    expect(new Set(hrefs).size).toBe(15);
+    expect(hrefs).toContain("/perfumes/corallis");
+    expect(hrefs).not.toContain("/perfumes/coralis");
+  });
+});
+
+describe("checkout (D5-E)", () => {
+  it("está activo y se alcanza desde el carrito, no desde la navegación", () => {
+    expect(resolveHref(routes.checkout)).toBe("/checkout");
+    expect(primaryNav).not.toContain(routes.checkout);
+    expect(footerNav).not.toContain(routes.checkout);
   });
 });
 
@@ -41,11 +72,12 @@ describe("registro de rutas", () => {
     }
   });
 
-  it("hoy solo Inicio y Colecciones (ancla) son enlaces; el resto está inactivo", () => {
+  it("todas las rutas del sitio están activas", () => {
     const active = Object.entries(routes)
       .filter(([, r]) => resolveHref(r) !== null)
       .map(([key]) => key);
-    expect(active).toEqual(["home", "collections"]);
-    expect(resolveHref(routes.collections)).toBe("/#colecciones");
+    expect(active).toEqual(["home", "collections", "perfumes", "quiz", "story", "contact", "checkout"]);
+    expect(resolveHref(routes.story)).toBe("/historia");
+    expect(resolveHref(routes.collections)).toBe("/colecciones");
   });
 });

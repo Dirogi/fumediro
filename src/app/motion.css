@@ -94,3 +94,21 @@
     transform: scaleX(0.7);
   }
 }
+
+/* Scent Finder (D6-B): una entrada breve por pantalla; solo opacity y transform, sin bucles. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes scent-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .scent-step {
+    animation: scent-in 320ms var(--ease-out) both;
+  }
+}

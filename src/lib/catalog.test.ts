@@ -3,14 +3,18 @@ import { collections } from "@/data/collections";
 import { perfumes } from "@/data/perfumes";
 import {
   getCollectionBySlug,
+  getAdjacentCollections,
   getCollectionOfPerfume,
+  getCollectionSlugs,
   getPerfumeBySlug,
+  getPerfumeSlugs,
+  getRelatedPerfumes,
   getPerfumesByCollection,
 } from "@/lib/catalog";
 
 const EXPECTED: Record<string, string[]> = {
   voltara: ["ion", "pulse", "solaris"],
-  "flora-arcana": ["aurelis", "coralis", "virelia"],
+  "flora-arcana": ["aurelis", "corallis", "virelia"],
   cosmora: ["aurora", "eclipse", "orion"],
   prismatica: ["amethys", "aureon", "chroma"],
   thermae: ["blush", "glacier", "terra"],
@@ -46,10 +50,12 @@ describe("catálogo V1", () => {
     }
   });
 
-  it("usa CORALIS y excluye frascos y textos prohibidos", () => {
+  it("usa CORALLIS y excluye frascos y textos prohibidos", () => {
     const text = JSON.stringify([collections, perfumes]).toLowerCase();
-    expect(getPerfumeBySlug("coralis")?.name).toBe("CORALIS");
-    expect(text).not.toContain("corallis");
+    expect(getPerfumeBySlug("corallis")?.name).toBe("CORALLIS");
+    // La grafía antigua no sobrevive en ids, slugs, nombres ni textos; solo en la ruta física de la imagen (coralis.webp).
+    expect(getPerfumeBySlug("coralis")).toBeUndefined();
+    expect(text.replaceAll("flora-arcana/coralis.webp", "")).not.toMatch(/coralis/);
     expect(text).not.toContain("maison");
     for (const s of ["arc", "nymphea-nox", "nebula", "spectra", "ember"]) {
       expect(getPerfumeBySlug(s)).toBeUndefined();
@@ -65,5 +71,46 @@ describe("catálogo V1", () => {
   it("slugs desconocidos devuelven undefined", () => {
     expect(getCollectionBySlug("nope")).toBeUndefined();
     expect(getPerfumeBySlug("nope")).toBeUndefined();
+  });
+});
+
+describe("helpers de rutas y navegación", () => {
+  it("los slugs estáticos coinciden con el catálogo (15 y 5, únicos)", () => {
+    expect(getPerfumeSlugs()).toHaveLength(15);
+    expect(getCollectionSlugs()).toHaveLength(5);
+    expect(new Set(getPerfumeSlugs()).size).toBe(15);
+    expect(getPerfumeSlugs()).toEqual(perfumes.map((p) => p.slug));
+  });
+
+  it("colecciones adyacentes: circulares y nunca la propia", () => {
+    const slugs = getCollectionSlugs();
+    for (const [i, slug] of slugs.entries()) {
+      const adj = getAdjacentCollections(slug);
+      expect(adj?.prev.slug).toBe(slugs[(i + 4) % 5]);
+      expect(adj?.next.slug).toBe(slugs[(i + 1) % 5]);
+      expect(adj?.next.slug).not.toBe(slug);
+    }
+    expect(getAdjacentCollections("nope")).toBeUndefined();
+  });
+
+  it("perfumes relacionados: hermanos de colección, sin el propio y con orden estable", () => {
+    const solaris = getPerfumeBySlug("solaris")!;
+    expect(getRelatedPerfumes(solaris).map((p) => p.slug)).toEqual(["ion", "pulse"]);
+    expect(getRelatedPerfumes(solaris, 1).map((p) => p.slug)).toEqual(["ion"]);
+    for (const p of perfumes) {
+      const rel = getRelatedPerfumes(p);
+      expect(rel).toHaveLength(2);
+      expect(rel.every((r) => r.collectionId === p.collectionId && r.id !== p.id)).toBe(true);
+    }
+  });
+});
+
+describe("integridad de fichas", () => {
+  it("cada perfume tiene colección, imagen y slug = id", () => {
+    for (const p of perfumes) {
+      expect(getCollectionOfPerfume(p)).toBeDefined();
+      expect(p.images[0]?.width).toBeGreaterThan(0);
+      expect(p.slug).toBe(p.id);
+    }
   });
 });

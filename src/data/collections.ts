@@ -17,7 +17,7 @@ export const collections: Collection[] = [
     tagline: "Botánica imaginaria",
     accentNames: ["jade", "coral", "marfil"],
     experienceType: "botanical-explorer",
-    perfumeIds: ["aurelis", "coralis", "virelia"],
+    perfumeIds: ["aurelis", "corallis", "virelia"],
   },
   {
     id: "cosmora",
