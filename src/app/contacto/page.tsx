@@ -3,11 +3,14 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { GlassButton } from "@/components/GlassButton";
 import { GlassPanel } from "@/components/GlassPanel";
 import { RevealOnView } from "@/components/RevealOnView";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contacto · Fumediro",
-  description: "Contacta con el creador de FUMEDIRO, un proyecto conceptual de diseño y desarrollo web.",
-};
+  description:
+    "Contacta con el creador de FUMEDIRO, un proyecto conceptual de diseño y desarrollo web.",
+  path: "/contacto",
+});
 
 const EMAIL_HREF = "mailto:diegogastonsahun@gmail.com?subject=Sobre%20FUMEDIRO";
 const PORTFOLIO_URL = "https://portfolio-web-diego-gaston-sahun.vercel.app/es";

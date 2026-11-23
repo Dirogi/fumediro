@@ -10,6 +10,7 @@ import { VoltaraExperience } from "@/components/VoltaraExperience";
 import { collectionContent } from "@/data/collectionContent";
 import { getCollectionBySlug, getCollectionSlugs, getPerfumesByCollection } from "@/lib/catalog";
 import { collectionPage } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => getCollectionSlugs().map((collectionSlug) => ({ collectionSlug }));
@@ -25,10 +26,11 @@ async function load({ params }: Props) {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { collection, content } = await load(props);
-  return {
+  return pageMetadata({
     title: `${collection.name} · Fumediro`,
     description: `${collection.name}: ${content.summary} Colección de Fumediro, proyecto conceptual de portfolio.`,
-  };
+    path: `${collectionPage.href}/${collection.slug}`,
+  });
 }
 
 export default async function CollectionPage(props: Props) {

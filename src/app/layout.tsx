@@ -4,6 +4,7 @@ import { CartProvider } from "@/components/CartProvider";
 import { GlassNav } from "@/components/GlassNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SkipLink } from "@/components/SkipLink";
+import { baseMetadata, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 import "./motion.css";
 
@@ -20,9 +21,10 @@ const manrope = Manrope({
   display: "swap",
 });
 
+// Base para canonical, Open Graph y robots/sitemap. Las páginas la heredan; ver `pageMetadata` en lib/seo.ts.
 export const metadata: Metadata = {
-  title: "Fumediro",
-  description: "Fumediro, marca ficticia de perfumería experimental. Proyecto conceptual de portfolio.",
+  metadataBase: new URL(SITE_URL),
+  ...baseMetadata,
 };
 
 export const viewport: Viewport = {

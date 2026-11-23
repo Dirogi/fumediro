@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ScentFinder } from "@/components/ScentFinder";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Descubre tu aroma · Fumediro",
-  description: "The Scent Finder: cuatro preguntas para orientarte entre los quince perfumes de Fumediro, proyecto conceptual de portfolio.",
-};
+  description:
+    "The Scent Finder: cuatro preguntas para orientarte entre los quince perfumes de Fumediro, proyecto conceptual de portfolio.",
+  path: "/descubre-tu-aroma",
+});
 
 export default function DiscoverPage() {
   return (

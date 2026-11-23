@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CatalogExplorer } from "@/components/CatalogExplorer";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
-  return { title: "Perfumes · Fumediro", description: "Los quince perfumes de Fumediro, proyecto conceptual de portfolio." };
+  return pageMetadata({ title: "Perfumes · Fumediro", description: "Los quince perfumes de Fumediro, proyecto conceptual de portfolio.", path: "/perfumes" });
 }
 
 // Leer `searchParams` hace la ruta dinámica: el HTML inicial ya llega filtrado y `useSearchParams` coincide (sin parpadeo ni Suspense).

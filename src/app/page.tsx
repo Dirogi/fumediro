@@ -1,8 +1,12 @@
+import type { Metadata } from "next";
 import { ClosingCta } from "@/components/ClosingCta";
 import { CollectionIndex } from "@/components/CollectionIndex";
 import { DiroCore } from "@/components/DiroCore";
 import { Hero } from "@/components/Hero";
 import { RevealOnView } from "@/components/RevealOnView";
+import { pageMetadata, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" });
 
 export default function Home() {
   return (

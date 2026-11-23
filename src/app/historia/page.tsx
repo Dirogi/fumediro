@@ -7,12 +7,14 @@ import { RevealOnView } from "@/components/RevealOnView";
 import { StoryForms } from "@/components/StoryForms";
 import { StoryUniverses } from "@/components/StoryUniverses";
 import { routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Nuestra historia · Fumediro",
   description:
     "Fumediro, una marca imaginaria que explora el perfume a través de la forma, la luz y la materia. Proyecto conceptual de portfolio.",
-};
+  path: "/historia",
+});
 
 const wrap = "mx-auto w-full max-w-[90rem] px-[max(1rem,5vw)]";
 const chapterPad = "py-[clamp(5rem,12vw,10rem)]";

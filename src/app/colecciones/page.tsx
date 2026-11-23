@@ -4,10 +4,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CollectionIndex } from "@/components/CollectionIndex";
 import { RevealOnView } from "@/components/RevealOnView";
 import { routes } from "@/lib/routes";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   if (!routes.collections.ready) notFound();
-  return { title: "Colecciones · Fumediro", description: "Las cinco colecciones de Fumediro, proyecto conceptual de portfolio." };
+  return pageMetadata({ title: "Colecciones · Fumediro", description: "Las cinco colecciones de Fumediro, proyecto conceptual de portfolio.", path: "/colecciones" });
 }
 
 export default function CollectionsPage() {

@@ -122,6 +122,8 @@ Narrativa sobria: visión de Fumediro, cinco colecciones, diseño escultórico, 
 
 **Cierre D8-D:** Contacto activa; todas las rutas de `routes.ts` están activas. SEO dependiente de la URL de publicación (`metadataBase`, canonical, Open Graph/Twitter, `robots.ts`, `sitemap.ts`) pendiente hasta definir el dominio; checkout mantiene `noindex`. No verificados: zoom real al 200 % ni lector de pantalla real.
 
+**SEO y metadatos (P3-B2):** URL canónica única `https://fumediro.vercel.app` (`metadataBase` en el layout; `pageMetadata` en `src/lib/seo.ts` fija canonical, Open Graph y Twitter por página, sin parámetros del catálogo). `robots.ts` permite el rastreo de todo (`Allow: /`) y apunta al sitemap; el checkout no se bloquea para que los rastreadores lean su `noindex, nofollow`. `sitemap.ts` lista las 26 páginas editoriales (sin checkout, sin filtros, sin `lastModified`). Imagen social: `public/images/og/fumediro-social.jpg` (JPEG 1200×630, ≈70 KB), copia optimizada del hero abstracto `hero-desktop.png` (original intacto, 1672×941, 1,8 MB) con recorte centrado conservador (≈7 % vertical), sin texto ni añadidos. Sin datos estructurados `Organization`/`Product`, cuentas sociales ni analítica.
+
 ## 11. Contratos de experiencia
 
 - Toda página tiene título visible, metadata y navegación clara.

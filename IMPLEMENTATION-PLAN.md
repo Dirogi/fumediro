@@ -72,6 +72,10 @@ Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada su
   - [x] **D8-C2** Correcciones implementadas, pendientes de revisión: aviso obsoleto del menú móvil retirado, nombre accesible de las colecciones, área pulsable de las migas (~44 px), README y CI mínimo (`.github/workflows/ci.yml`). PERF-1 documentado sin cambios de código (ver `UX-SPEC.md`).
   - **Decisiones pendientes para la publicación:** dominio y plataforma; con la URL definitiva, `metadataBase`, canonical, Open Graph/Twitter, `robots.ts` y `sitemap.ts` (se mantiene `noindex` en checkout; sin imágenes OG nuevas ni datos estructurados que presenten la marca como empresa real); licencia; enlace de despliegue y capturas del README.
   - [x] **D8-D** Activación de Contacto (`routes.contact.ready = true`, guard de desarrollo eliminado) y verificaciones finales. Técnicamente completada; pendiente de revisión y commit. El CI no se ha ejecutado aún en GitHub.
+- [ ] **P3 · Publicación** (`https://fumediro.vercel.app`)
+  - [x] **P3-B1** Auditoría funcional de producción aprobada (sin incidencias P0–P2).
+  - [x] **P3-B2** SEO y metadatos: `metadataBase`, canonical por página, Open Graph y Twitter Card (imagen social JPEG 1200×630 en `public/images/og/`), `robots.ts` (sin bloqueo del checkout, que mantiene `noindex`) y `sitemap.ts` (26 URLs). Implementada en local, pendiente de revisión, commit y despliegue.
+  - [ ] **P4** README con capturas y enlace de despliegue; mediciones Lighthouse.
 - [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
 - [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
 - [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).
