@@ -15,7 +15,8 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
           return (
             <li key={c.label} className="flex items-center gap-x-2">
               {c.href && !last ? (
-                <Link href={c.href} className="underline underline-offset-4 hover:text-ivory">
+                <Link href={c.href} // ::after amplía el área pulsable (~44 px) sin mover el texto ni el layout.
+                className="relative underline underline-offset-4 after:absolute after:-inset-x-[5px] after:-inset-y-3 after:content-[''] hover:text-ivory">
                   {c.label}
                 </Link>
               ) : (

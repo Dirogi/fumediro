@@ -71,7 +71,8 @@ function CollectionRow({ collection, index, variant }: { collection: Collection;
   return (
     <li>
       {href ? (
-        <Link href={href} className={cls} aria-label={`${collection.name}, ${collection.tagline}`}>
+        // Sin aria-label: el nombre accesible deriva del contenido visible (WCAG 2.5.3).
+        <Link href={href} className={cls}>
           {body}
         </Link>
       ) : (

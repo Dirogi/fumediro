@@ -33,7 +33,6 @@ export function GlassNav() {
                 </li>
               ))}
             </ul>
-            <p className="pt-3 text-sm text-silver">Otras secciones se abrirán por fases.</p>
           </MobileMenu>
         </div>
       </nav>

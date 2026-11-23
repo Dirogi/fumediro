@@ -14,7 +14,7 @@ export const routes = {
   perfumes: { label: "Perfumes", href: "/perfumes", ready: true },
   quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: true },
   story: { label: "Nuestra historia", href: "/historia", ready: true },
-  contact: { label: "Contacto", href: "/contacto", ready: false },
+  contact: { label: "Contacto", href: "/contacto", ready: true },
   // Checkout simulado (D5): no figura en la navegación; se llega desde el carrito.
   checkout: { label: "Finalizar selección", href: "/checkout", ready: true },
 } satisfies Record<string, AppRoute>;

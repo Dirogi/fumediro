@@ -116,6 +116,12 @@ Narrativa sobria: visión de Fumediro, cinco colecciones, diseño escultórico, 
 
 **Estructura (D7-B, textos aprobados):** cabecera «Nuestra historia.» con entradilla; I Manifiesto («Un perfume no termina en su aroma.», lema una sola vez con `lang="en"`, sin traducción); II «La forma también habla.» (banda grafito; ION, AUREON y CORALLIS en su proporción real, pies con enlace a la ficha; DiroCore™ presentado como familia ficticia); III «Cinco formas de imaginar.» (cinco filas-enlace a las colecciones; luz ambiental solo con hover/foco, nada esencial depende de ella); IV «Empieza por donde quieras.» (acción principal «Descubre tu aroma», secundarias «Ver los quince perfumes» y «Explorar colecciones», y nota de proyecto conceptual). Textos de catálogo en `src/data/story.ts`. Activa desde D7-D: la enlazan cabecera, menú móvil y pie, y se indexa con metadatos propios.
 
+**Contacto (D8-B, textos aprobados):** `/contacto` sin formulario ni backend: H1 «Toda idea empieza con una conversación.», entradilla, bloque «Hablemos de ideas.», un único panel de cristal con «Escribir un correo» (`mailto:` con asunto «Sobre FUMEDIRO») y «Ver mi portfolio» (nueva pestaña, `noopener noreferrer`, anunciada a lectores de pantalla) y nota de transparencia en banda grafito. En móvil el panel de acciones precede al bloque editorial. Activa públicamente desde D8-D (`routes.contact.ready = true`, guard de desarrollo eliminado, metadata propia, indexable); permanece solo en el pie, no en cabecera ni menú móvil.
+
+**Ajustes D8-C2:** el menú móvil ya no muestra el aviso «Otras secciones se abrirán por fases». Las migas amplían su área pulsable con un `::after` (sin mover el texto). Los enlaces del índice de colecciones usan un nombre accesible que contiene el texto visible. PERF-1 (aviso de consola en `/perfumes` con viewports estrechos: la precarga de las tres primeras tarjetas pide `w=384` mientras la imagen usa `w=640`) se deja sin cambios: es un desajuste de candidatos de `srcset` sin evidencia de impacto medido en LCP; revisar tras publicar con métricas reales.
+
+**Cierre D8-D:** Contacto activa; todas las rutas de `routes.ts` están activas. SEO dependiente de la URL de publicación (`metadataBase`, canonical, Open Graph/Twitter, `robots.ts`, `sitemap.ts`) pendiente hasta definir el dominio; checkout mantiene `noindex`. No verificados: zoom real al 200 % ni lector de pantalla real.
+
 ## 11. Contratos de experiencia
 
 - Toda página tiene título visible, metadata y navegación clara.

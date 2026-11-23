@@ -65,6 +65,13 @@ Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada su
   - [x] **D7-B** Primera versión de `/historia` (`src/app/historia/page.tsx`, `StoryForms`, `StoryUniverses`, `src/data/story.ts`).
   - [x] **D7-C** Visibilidad y refinamiento: el capítulo IV «vacío» era un artefacto del navegador de pruebas (sin frames no avanzan las transiciones de `RevealOnView`; ocurre igual en Home y `/colecciones`), sin cambios de código.
   - [x] **D7-D** Auditoría y activación pública (`routes.story.ready = true`, guard de desarrollo eliminado, test de rutas actualizado, metadata propia, indexable). Técnicamente terminada; el commit único de D7 espera aprobación final.
+- [x] Crear `/contacto` (D8).
+  - [x] **D8-A** Planificación aprobada (correo `mailto:` + portfolio, sin formulario ni backend).
+  - [x] **D8-B** `/contacto` implementada (`src/app/contacto/page.tsx`), solo en desarrollo; pendiente de revisión visual.
+  - [x] **D8-C1** Diagnóstico completado (sin bloqueantes; hallazgos UX-1, A11Y-1/2, PERF-1, SEO y documentación).
+  - [x] **D8-C2** Correcciones implementadas, pendientes de revisión: aviso obsoleto del menú móvil retirado, nombre accesible de las colecciones, área pulsable de las migas (~44 px), README y CI mínimo (`.github/workflows/ci.yml`). PERF-1 documentado sin cambios de código (ver `UX-SPEC.md`).
+  - **Decisiones pendientes para la publicación:** dominio y plataforma; con la URL definitiva, `metadataBase`, canonical, Open Graph/Twitter, `robots.ts` y `sitemap.ts` (se mantiene `noindex` en checkout; sin imágenes OG nuevas ni datos estructurados que presenten la marca como empresa real); licencia; enlace de despliegue y capturas del README.
+  - [x] **D8-D** Activación de Contacto (`routes.contact.ready = true`, guard de desarrollo eliminado) y verificaciones finales. Técnicamente completada; pendiente de revisión y commit. El CI no se ha ejecutado aún en GitHub.
 - [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
 - [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
 - [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).
