@@ -13,7 +13,7 @@ export const routes = {
   collections: { label: "Colecciones", href: "/colecciones", ready: true, fallback: "/#colecciones" },
   perfumes: { label: "Perfumes", href: "/perfumes", ready: true },
   quiz: { label: "Descubre tu aroma", href: "/descubre-tu-aroma", ready: true },
-  story: { label: "Nuestra historia", href: "/historia", ready: false },
+  story: { label: "Nuestra historia", href: "/historia", ready: true },
   contact: { label: "Contacto", href: "/contacto", ready: false },
   // Checkout simulado (D5): no figura en la navegación; se llega desde el carrito.
   checkout: { label: "Finalizar selección", href: "/checkout", ready: true },

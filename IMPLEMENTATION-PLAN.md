@@ -60,7 +60,11 @@ Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada su
 
 ## 5. Historia y cuestionario
 
-- [ ] Crear `/historia` con Fumediro, materiales ficticios y contexto de portfolio.
+- [x] Crear `/historia` con Fumediro, materiales ficticios y contexto de portfolio.
+  - [x] **D7-A** Narrativa, textos y dirección artística aprobados (cuatro capítulos).
+  - [x] **D7-B** Primera versión de `/historia` (`src/app/historia/page.tsx`, `StoryForms`, `StoryUniverses`, `src/data/story.ts`).
+  - [x] **D7-C** Visibilidad y refinamiento: el capítulo IV «vacío» era un artefacto del navegador de pruebas (sin frames no avanzan las transiciones de `RevealOnView`; ocurre igual en Home y `/colecciones`), sin cambios de código.
+  - [x] **D7-D** Auditoría y activación pública (`routes.story.ready = true`, guard de desarrollo eliminado, test de rutas actualizado, metadata propia, indexable). Técnicamente terminada; el commit único de D7 espera aprobación final.
 - [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
 - [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
 - [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).

@@ -114,6 +114,8 @@ Si existe una experiencia visual en ficha, reutilizar el componente de colecció
 
 Narrativa sobria: visión de Fumediro, cinco colecciones, diseño escultórico, materiales DiroCore™ y las tecnologías ficticias asociadas. Explicar de forma transparente que es un **proyecto conceptual de portfolio**. No inventar fechas de fundación, laboratorios, premios, patentes o certificaciones. Contenido organizado en secciones editoriales y paneles de cristal selectivos.
 
+**Estructura (D7-B, textos aprobados):** cabecera «Nuestra historia.» con entradilla; I Manifiesto («Un perfume no termina en su aroma.», lema una sola vez con `lang="en"`, sin traducción); II «La forma también habla.» (banda grafito; ION, AUREON y CORALLIS en su proporción real, pies con enlace a la ficha; DiroCore™ presentado como familia ficticia); III «Cinco formas de imaginar.» (cinco filas-enlace a las colecciones; luz ambiental solo con hover/foco, nada esencial depende de ella); IV «Empieza por donde quieras.» (acción principal «Descubre tu aroma», secundarias «Ver los quince perfumes» y «Explorar colecciones», y nota de proyecto conceptual). Textos de catálogo en `src/data/story.ts`. Activa desde D7-D: la enlazan cabecera, menú móvil y pie, y se indexa con metadatos propios.
+
 ## 11. Contratos de experiencia
 
 - Toda página tiene título visible, metadata y navegación clara.
