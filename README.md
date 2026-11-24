@@ -2,9 +2,49 @@
 
 > **Beyond scent. Beyond form.**
 
-FUMEDIRO es una marca **ficticia** de perfumería experimental, concebida como proyecto de diseño y desarrollo web para portfolio. Imagina perfumes cuyo frasco forma parte de la experiencia: su forma, su color y su relación con la luz.
+**🔗 [Ver la web en producción: fumediro.vercel.app](https://fumediro.vercel.app)**
 
-**No es una tienda real.** Los perfumes, los materiales y DiroCore™ son inventados, los precios son de demostración y no se procesa ningún pago ni pedido.
+> **Marca ficticia y proyecto demostrativo.** FUMEDIRO no es una tienda real: los perfumes, los materiales y DiroCore™ son inventados, los precios son de demostración y no se procesa ningún pago ni pedido.
+
+FUMEDIRO es una marca de perfumería experimental concebida como proyecto de diseño y desarrollo web para portfolio. Imagina perfumes cuyo frasco forma parte de la experiencia: su forma, su color y su relación con la luz. El sitio reúne un catálogo de 15 fragancias en cinco colecciones, cada una con una interacción propia, un carrito de demostración y un cuestionario de recomendación determinista.
+
+## Vista previa
+
+![Home de FUMEDIRO: hero con el nombre de la marca, el claim «Beyond scent. Beyond form.» y la navegación principal](docs/screenshots/home-desktop.webp)
+
+### Descubrir y explorar
+
+| Catálogo | Colección COSMORA |
+|---|---|
+| ![Catálogo de perfumes con filtros por colección, ordenación y las primeras tarjetas de producto](docs/screenshots/catalogo-desktop.webp) | ![Colección COSMORA: cámara decorativa de partículas junto al frasco ECLIPSE](docs/screenshots/cosmora-desktop.webp) |
+| Filtro por colección, ordenación y estado en la URL. | Una interacción propia por colección. |
+
+### Experiencia de compra (simulada)
+
+| Ficha de CORALLIS | Carrito |
+|---|---|
+| ![Ficha de producto de CORALLIS con familia olfativa, color del frasco, rasgo de diseño y precio de demostración](docs/screenshots/perfume-corallis-desktop.webp) | ![Panel «Tu selección» con CORALLIS, subtotal y aviso de compra simulada](docs/screenshots/carrito-desktop.webp) |
+| Plantilla compartida alimentada por datos tipados. | Panel accesible con persistencia local. |
+
+### The Scent Finder
+
+![Resultado de The Scent Finder: recomendación de CHROMA con explicación de forma, paleta e idea](docs/screenshots/scent-finder-resultado-desktop.webp)
+
+Recomendación determinista a partir de cuatro preguntas, sin cuentas ni almacenamiento de respuestas.
+
+### Nuestra historia
+
+![Página Nuestra historia con el título y el primer capítulo](docs/screenshots/historia-desktop.webp)
+
+La idea de marca en cuatro capítulos.
+
+### Adaptación móvil
+
+<p align="center">
+  <img src="docs/screenshots/home-movil.webp" alt="Home de FUMEDIRO en móvil (390 × 844 px) con navegación compacta, carrito y botón Menú" width="300">
+</p>
+
+*Capturas tomadas el 24-11-2026 en https://fumediro.vercel.app (Chromium vía Playwright, 1440 × 900 y 390 × 844 px, con datos de demostración). Puede haber diferencias con versiones posteriores.*
 
 ## Funcionalidades
 
@@ -45,18 +85,21 @@ npm run lint         # eslint
 npm test             # vitest run
 ```
 
-Una integración continua en GitHub Actions (`.github/workflows/ci.yml`) ejecuta typecheck, lint, tests y build en cada push y pull request.
+Pruebas: tests unitarios con Vitest sobre las funciones puras (catálogo, filtros, carrito, recomendación). No hay tests de navegador automatizados en el repositorio.
+
+Una integración continua en GitHub Actions (`.github/workflows/ci.yml`) está configurada para ejecutar typecheck, lint, tests y build en cada push y pull request. Este README no recoge resultados de ejecuciones concretas.
 
 ## Arquitectura
 
 ```
-src/app/         Rutas (App Router): /, /perfumes, /colecciones, /descubre-tu-aroma,
-                 /historia, /checkout, /contacto y las dinámicas por slug
-src/components/  Componentes compartidos (GlassPanel, GlassButton, navegación, tarjetas,
-                 drawer del carrito) y experiencias de cada colección
-src/data/        Catálogo, colecciones, precios de demostración y textos (datos locales)
-src/lib/         Tipos y funciones puras (catálogo, filtros, carrito, recomendación) con tests
-public/images/   Fotografías de producto e imágenes del hero
+src/app/           Rutas (App Router): /, /perfumes, /colecciones, /descubre-tu-aroma,
+                   /historia, /checkout, /contacto y las dinámicas por slug
+src/components/    Componentes compartidos (GlassPanel, GlassButton, navegación, tarjetas,
+                   drawer del carrito) y experiencias de cada colección
+src/data/          Catálogo, colecciones, precios de demostración y textos (datos locales)
+src/lib/           Tipos y funciones puras (catálogo, filtros, carrito, recomendación) con tests
+public/images/     Fotografías de producto, imágenes del hero e imagen social
+docs/screenshots/  Capturas de la web publicada usadas en este README
 ```
 
 No hay backend, CMS ni servicios externos. No hay una página por perfume: las fichas y colecciones salen de `generateStaticParams` y los datos. Los documentos de especificación (`PRODUCT.md`, `DESIGN.md`, `UX-SPEC.md`, `IMPLEMENTATION-PLAN.md`) y las reglas de trabajo (`CLAUDE.md`) están en la raíz.
@@ -76,14 +119,22 @@ No hay backend, CMS ni servicios externos. No hay una página por perfume: las f
 - Los precios son de demostración.
 - El carrito guarda en `localStorage` únicamente identificadores y cantidades.
 - El cuestionario no almacena ni envía las respuestas.
-- Aún no se han medido métricas de rendimiento (Lighthouse/Core Web Vitals) en un entorno publicado.
+- Rendimiento: mediciones de **laboratorio** (P3-B3) sobre la versión publicada, con Chrome, móvil emulado, throttling aplicado mediante CDP y tres cargas en frío por página y dispositivo. LCP de la Home: 1,048 s; LCP del catálogo: 1,564 s; CLS de 0 en las siete páginas móviles medidas. **No son resultados oficiales de Lighthouse** (no pudo ejecutarse) ni se deben leer como puntuaciones: no hay datos reales de Core Web Vitals ni INP medido.
 
 ## Imágenes, créditos y licencia
 
 - Las fotografías de producto son imágenes generadas; la herramienta concreta no consta en este repositorio.
+- Las capturas de `docs/screenshots/` proceden de la web publicada y muestran sus mismas imágenes de producto y de marca.
 - Las tipografías proceden de Google Fonts.
 - Aún no se ha definido una licencia para el código o las imágenes; hasta entonces, todos los derechos están reservados.
 
 ## Despliegue
 
-Pendiente: todavía no hay una versión publicada. Cuando exista, se añadirá aquí su dirección.
+Publicado en **Vercel**: https://fumediro.vercel.app
+
+### SEO y compartición
+
+- URL base y `canonical` por página.
+- Open Graph y Twitter Cards, con una imagen social de 1200 × 630 px (`public/images/og/fumediro-social.jpg`).
+- `robots.txt` y `sitemap.xml` generados desde `src/app/robots.ts` y `src/app/sitemap.ts`.
+- `/checkout` se mantiene como `noindex`.
