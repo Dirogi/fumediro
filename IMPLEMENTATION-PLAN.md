@@ -75,7 +75,10 @@ Precios ficticios de portfolio en `src/data/demoPricing.ts` (céntimos). Cada su
 - [ ] **P3 · Publicación** (`https://fumediro.vercel.app`)
   - [x] **P3-B1** Auditoría funcional de producción aprobada (sin incidencias P0–P2).
   - [x] **P3-B2** SEO y metadatos: `metadataBase`, canonical por página, Open Graph y Twitter Card (imagen social JPEG 1200×630 en `public/images/og/`), `robots.ts` (sin bloqueo del checkout, que mantiene `noindex`) y `sitemap.ts` (26 URLs). Implementada en local, pendiente de revisión, commit y despliegue.
-  - [ ] **P4** README con capturas y enlace de despliegue; mediciones Lighthouse.
+  - [x] **P3-B3** Auditoría de rendimiento aprobada: mediciones de laboratorio con Chrome sobre producción, sin optimizaciones imprescindibles. **Lighthouse no pudo ejecutarse**: no hay puntuaciones oficiales.
+  - [ ] **P4** Cierre del portfolio.
+    - [x] **P4-A** Capturas definitivas (8 WebP en `docs/screenshots/`, tomadas de producción) y README renovado con enlace de despliegue, vista previa, SEO y limitaciones. Implementado en la rama `docs/p4a-readme-screenshots`, pendiente de revisión y commit.
+    - [ ] **P4-B** Decisión de licencia y cierre; mediciones Lighthouse siguen pendientes.
 - [x] **D6-A** Definir atributos de recomendación a partir de datos reales del catálogo (capa interpretativa `scentFinder.ts`; simulación de las 400 combinaciones aprobada).
 - [x] **D6-B** Algoritmo definitivo y cuestionario de 4 pasos con progreso, retroceso y reinicio (ruta solo en desarrollo; estado final provisional).
 - [x] **D6-C** Pantalla de resultados: recomendación, alternativas, fotografía, explicación y enlaces a las fichas (ruta aún solo en desarrollo en ese momento).
