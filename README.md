@@ -123,10 +123,10 @@ No hay backend, CMS ni servicios externos. No hay una página por perfume: las f
 
 ## Imágenes, créditos y licencia
 
-- Las fotografías de producto son imágenes generadas; la herramienta concreta no consta en este repositorio.
+- Las imágenes de producto y los recursos visuales de FUMEDIRO se han generado con ChatGPT (OpenAI) para este proyecto conceptual.
 - Las capturas de `docs/screenshots/` proceden de la web publicada y muestran sus mismas imágenes de producto y de marca.
 - Las tipografías proceden de Google Fonts.
-- Aún no se ha definido una licencia para el código o las imágenes; hasta entonces, todos los derechos están reservados.
+- Este proyecto se presenta con fines demostrativos. No se concede ninguna licencia de reutilización del código ni de los recursos visuales.
 
 ## Despliegue
 
